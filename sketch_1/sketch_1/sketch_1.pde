@@ -1,4 +1,4 @@
-/*
+
 PImage bg, playerImage;  
 //****Game Setup****
 void setup()
@@ -14,7 +14,7 @@ void draw()
   background(#33cc33); 
   image(playerImage, 3,4); 
 }
-*/ 
+/* 
 
 // pac man 
  
@@ -535,3 +535,4 @@ class Ghost {
  
 // ==========================================================================
 // 
+*/ 
