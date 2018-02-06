@@ -1,5 +1,5 @@
-//TAP GAME edit test ignore this line -Z 
-PImage bg, playerImage;  
+
+/*PImage bg, playerImage;  
 //****Game Setup****
 void setup()
 { 
@@ -14,7 +14,7 @@ void draw()
   background(#33cc33); 
   image(playerImage, 3,4); 
 }
-/* 
+*/ 
 
 // pac man 
  
@@ -28,7 +28,7 @@ int[] decodeY = {
 Grid grid;
 Player player;
 Ghost[] ghosts;
- 
+PImage bg, playerImage;
 boolean to_corners = false;
 int timer_corners;
  
@@ -60,7 +60,10 @@ void setup() {
   for (int i=0; i<ghosts.length; i++) {
     ghosts[i] = new Ghost (i);
   }
- 
+  
+  bg = loadImage("lawn1.jpg"); 
+  
+
   timer_corners = millis() + 10000;
 }
  
@@ -119,12 +122,15 @@ void ghosts_reset() {
  
 class Player {
  
+
+  
   float start_x = 30;
   float start_y = 30;
   float x, y;
   int d;
-  float mouth_opening, max_mouth_opening, mouth_step;
-  boolean is_mouth_opening = true;
+  
+ float mouth_opening, max_mouth_opening, mouth_step;
+  //boolean is_mouth_opening = true;
   boolean am_i_super = false;
   boolean is_dead = false;
   int super_countdown;
@@ -137,9 +143,10 @@ class Player {
     x = start_x;
     y = start_y;
     d = 0;
-    mouth_opening = 0; 
+   /* mouth_opening = 0; */
     max_mouth_opening = .4; 
-    mouth_step = .01;
+   mouth_step = .01;  
+   
     am_i_super = false;
     super_countdown = 0;
     is_dead = false;
@@ -157,7 +164,7 @@ class Player {
   void simulate() {
     if (mouth_opening > PI ) reset();
     if (is_dead) { 
-      animate_mouth(); 
+     // animate_mouth(); 
       return;
     }
     float px=x, py=y;
@@ -169,7 +176,7 @@ class Player {
       x = px;
       y = py;
     } else {
-      animate_mouth();
+      //animate_mouth();
       grid.eat_dot_at(x, y);
     }
     if (super_countdown > 0) { 
@@ -180,7 +187,7 @@ class Player {
       for (int i=0; i<ghosts.length; ghosts[i++].dont_be_afraid ());
     }
   }
-  void animate_mouth() {
+ /* void animate_mouth() {
     if (is_mouth_opening) {
       mouth_opening+=mouth_step;
     } else {
@@ -189,7 +196,7 @@ class Player {
     if (mouth_opening > max_mouth_opening || mouth_opening < 0) {
       is_mouth_opening = !is_mouth_opening;
     }
-  }
+  } */ 
   void be_super() {
     am_i_super = true;
     super_countdown = 500;
@@ -198,12 +205,15 @@ class Player {
   void render() {
     pushMatrix();
     translate(x, y);
-    rotate(HALF_PI*d);
+   
+     playerImage = loadImage("pug.png") ;
+    playerImage.resize(35,40); 
+    /*rotate(HALF_PI*d);
     stroke(0);
     fill(am_i_super?color(random(255), random(255), random(255)):color(255, 255, 0));
     ellipse(0, 0, 22, 22);
     fill(0);
-    arc(0, 0, 22, 22, -mouth_opening, mouth_opening);
+    //arc(0, 0, 22, 22, -mouth_opening, mouth_opening); */ 
     popMatrix();
   }
   void on_keyPressed() {
@@ -535,4 +545,3 @@ class Ghost {
  
 // ==========================================================================
 // 
-*/ 
