@@ -8,7 +8,7 @@ PFont healthTxt;
 void setup()
 { 
   size(900, 550); //Canvas setup
-  bg = loadImage("lawn.jpg"); //load background image
+ // bg = loadImage("lawn.jpg"); //load background image
   smooth(); 
   
   p = new Player(); //Player
