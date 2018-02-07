@@ -3,7 +3,9 @@ import processing.sound.*;
 
 //****Game Setup****
 SoundFile file; 
+//String audioName = "AfireLove.mp3"; 
 String audioName = "Eyeliner.mp3"; 
+
 String path; 
 
 static float posX; 
