@@ -1,16 +1,17 @@
-import processing.sound.*; 
+//import processing.sound.*; 
 
 
 //****Game Setup****
-SoundFile file; 
+//SoundFile file; 
 String audioName = "Eyeliner.mp3"; 
 String path; 
 
 static float posX; 
 static float posY; 
-PImage doggy, bg, oldman, mazeImg; 
+PImage doggy, bg, oldman, mazeImg, treats; 
 Player p; 
-Enemy e; 
+Enemy e;
+Treats t;
 PFont healthTxt; 
 void setup()
 { 
@@ -19,8 +20,8 @@ void setup()
   smooth(); 
   
   path = sketchPath(audioName); 
-  file = new SoundFile(this, path); 
-  file.play(); 
+ // file = new SoundFile(this, path); 
+ // file.play(); 
   
   p = new Player(); //Player
   doggy = loadImage("pug.png"); //Player Image
@@ -30,6 +31,10 @@ void setup()
   e = new Enemy(); 
   oldman = loadImage("oldman.jpg");
   oldman.resize(40,40); 
+  
+  t = new Treats(); 
+  treats = loadImage("oldman.jpg");
+  treats.resize(40,40); 
   
   ( mazeImg = createMaze() ).resize(width, height);
   /* smooth(); 
