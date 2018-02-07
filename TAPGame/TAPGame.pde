@@ -1,4 +1,11 @@
+import processing.sound.*; 
+
+
 //****Game Setup****
+SoundFile file; 
+String audioName = "Eyeliner.mp3"; 
+String path; 
+
 static float posX; 
 static float posY; 
 PImage doggy, bg, oldman, mazeImg; 
@@ -7,9 +14,13 @@ Enemy e;
 PFont healthTxt; 
 void setup()
 { 
-  size(900, 550); //Canvas setup
- // bg = loadImage("lawn.jpg"); //load background image
+  size(1000, 650); //Canvas setup
+  bg = loadImage("lawn.jpg"); //load background image
   smooth(); 
+  
+  path = sketchPath(audioName); 
+  file = new SoundFile(this, path); 
+  file.play(); 
   
   p = new Player(); //Player
   doggy = loadImage("pug.png"); //Player Image
