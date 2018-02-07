@@ -17,20 +17,20 @@ class Player
 
   void reset()
   {
+    health = 100; 
     x = start_x; 
     y = start_y; 
     d = 0; 
     doggySpeed = 5;
   }
-  void move()
+  
+ int getHealth()
   {
-    y--;
+    return health; 
   }
+  
   void display()
   {
-    stroke(0); 
-    fill(127); 
-    //ellipse(x, y, 64, 64); 
     imageMode(CENTER); 
     image(doggy, x, y);
   }
@@ -41,12 +41,19 @@ class Player
       if ( keyCode == DOWN ) y = y + doggySpeed;
       if ( keyCode == LEFT )  x = x - doggySpeed;
       if ( keyCode == UP )   y = y - doggySpeed;
-      
     }
   }
+  void displayHealth()
+  {
+    // EDIT: DISPLAYING HEALTH ON THE SCREEN 
+    String health = str(p.getHealth()); 
+    textFont(healthTxt, 30); // STEP 3 Specify font + size 
+    fill(232, 27,27); // STEP 4 Specify font color 
+    text(health, 820, 50); // STEP 5 Display Text
+  } 
 
-   //Keeps doggy from going off the screen
-   void confineToEdges() {
+  //Keeps doggy from going off the screen
+  void confineToEdges() {
     x = constrain(x, 5, 890);
     y = constrain(y, 5, 540);
   }

@@ -1,18 +1,29 @@
 //****Game Setup****
 static float posX; 
 static float posY; 
-PImage doggy, bg; 
+PImage doggy, bg, oldman, mazeImg; 
 Player p; 
+Enemy e; 
+PFont healthTxt; 
 void setup()
 { 
   size(900, 550); //Canvas setup
-  p = new Player(); 
-  bg = loadImage("lawn1.jpg");
-   doggy = loadImage("pug.png"); 
-   doggy.resize(35,40);
+  bg = loadImage("lawn.jpg"); //load background image
+  smooth(); 
+  
+  p = new Player(); //Player
+  doggy = loadImage("pug.png"); //Player Image
+  doggy.resize(35, 40);
+  healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
+
+  e = new Enemy(); 
+  oldman = loadImage("oldman.jpg");
+  oldman.resize(40,40); 
+  
+  ( mazeImg = createMaze() ).resize(width, height);
   /* smooth(); 
    frameRate(120); 
-  
+   
    posX = width/2; 
    posY = height/2;
    doggySpeed = 5;  */
@@ -21,36 +32,40 @@ void setup()
 void draw()
 {
 
-  background(bg); 
- // p.move();
-  p.display();
+  background(mazeImg); //background
+  
+  p.display(); //player
+  p.displayHealth(); 
   p.confineToEdges(); 
- // p.top(); 
- // image(doggy, posX, posY); 
- // imageMode(CENTER);
+
+  e.display(); 
+  e.move(); 
+  e.confineToEdges(); 
+ 
+  
 }
 
- void keyPressed()
+void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
+{
+  p.on_keyPressed();
+}
+
+
+//================GRID CLASS================
+/*class Grid
  {
-     p.on_keyPressed(); 
+ String[][] data = new String[30][30];
+ 
+ Grid()
+ {
+ for(int j=0; j <30; j++)
+ {
+ for int i=0; i<30; i++)
+ {
+ data[j][i] = "2";
+ //FINISH CODING THIS PART IF NEEDED 
  }
-
-
-  //================GRID CLASS================
-  /*class Grid
-   {
-   String[][] data = new String[30][30];
-   
-   Grid()
-   {
-   for(int j=0; j <30; j++)
-   {
-   for int i=0; i<30; i++)
-   {
-   data[j][i] = "2";
-   //FINISH CODING THIS PART IF NEEDED 
-   }
-   }
-   }
-   }
-   */
+ }
+ }
+ }
+ */
