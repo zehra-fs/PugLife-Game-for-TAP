@@ -2,6 +2,7 @@
 //==========PLAYER CLASS===========
 class Player 
 {
+
   int d; 
   float x, y; 
   float start_x = 30; 
@@ -9,6 +10,7 @@ class Player
   int doggySpeed; 
   boolean isDead = false; 
   int health; 
+  color wallColor = color(183, 74, 11); 
 
   Player()
   {
@@ -23,12 +25,12 @@ class Player
     d = 0; 
     doggySpeed = 5;
   }
-  
- int getHealth()
+
+  int getHealth()
   {
-    return health; 
+    return health;
   }
-  
+
   void display()
   {
     imageMode(CENTER); 
@@ -44,21 +46,53 @@ class Player
       if ( keyCode == LEFT )  x = x - doggySpeed;
       if ( keyCode == UP )   y = y - doggySpeed;
     }
+  } 
+
+  /*void on_keyPressed() 
+   {
+   } */
+
+  void moveLeft() {
+    color leftColor = get((int(posX) + (doggy.width/2 +1) ), int(posY)); 
+    if (leftColor != wallColor) 
+    {
+      x = x - doggySpeed;
+    }
   }
+
+  void moveRight() {
+    color rightColor = get((int(posX)), int(posY)); 
+    if (rightColor != wallColor) {
+      x= x + doggySpeed;
+    }
+  }
+  void moveUp() {
+    color upColor = get(int(posX), (int(posY)-(doggy.width/2 +1))); 
+    if (upColor != wallColor) {
+      y = y - doggySpeed;
+    }
+  }
+  void moveDown() {
+    color downColor = get(int(posX), (int(posY) + (doggy.width/2+1))); 
+    if (downColor != wallColor) { 
+      y = y + doggySpeed;
+    }
+  }
+
   void displayHealth()
   {
     // EDIT: DISPLAYING HEALTH ON THE SCREEN 
     String health = str(p.getHealth()); 
     textFont(healthTxt, 30); // STEP 3 Specify font + size 
-    fill(232, 27,27); // STEP 4 Specify font color 
+    fill(232, 27, 27); // STEP 4 Specify font color 
     text(health, 820, 50); // STEP 5 Display Text
   } 
 
   //Keeps doggy from going off the screen
   void confineToEdges()
   {
-    x = constrain(x, 5, 890);
-    y = constrain(y, 5, 540);
+    x = constrain(x, 5, 990);
+    y = constrain(y, 5, 640);
   }
 
   //========================
@@ -75,11 +109,12 @@ class Player
    if (1==d) y++;
    if (2==d) x--;
    if (3==d) y--;
-   }*/
-
-  void draw()
-  {
-    //simulate(); 
-    //image(doggy, posX, posY);
-  }
+   }
+   
+   void draw()
+   {
+   //simulate(); 
+   //image(doggy, posX, posY);
+   }
+   */
 }
