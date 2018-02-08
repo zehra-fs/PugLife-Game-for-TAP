@@ -31,7 +31,7 @@ class Enemy
   //Keeps enemies from going off the screen
   void confineToEdges() 
   {
-    x = constrain(x, 5, 890);
-    y = constrain(y, 5, 540);
+    x = constrain(x, 5, 990);
+    y = constrain(y, 5, 640);
   }
 }

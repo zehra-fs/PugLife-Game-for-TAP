@@ -2,14 +2,9 @@
 
 
 //****Game Setup****
-<<<<<<< HEAD
-SoundFile file; 
-//String audioName = "AfireLove.mp3"; 
-=======
-//SoundFile file; 
->>>>>>> 91b7cdf00f45839d3a65fecae640c4925df67695
-String audioName = "Eyeliner.mp3"; 
 
+//SoundFile file; 
+String audioName = "Eyeliner.mp3"; 
 String path; 
 
 static float posX; 
@@ -17,8 +12,9 @@ static float posY;
 PImage doggy, bg, oldman, mazeImg, treats; 
 Player p; 
 Enemy e;
-Treats t;
+Treat t;
 PFont healthTxt; 
+ 
 void setup()
 { 
   size(1000, 650); //Canvas setup
@@ -26,8 +22,8 @@ void setup()
   smooth(); 
   
   path = sketchPath(audioName); 
- // file = new SoundFile(this, path); 
- // file.play(); 
+  //file = new SoundFile(this, path); 
+  //file.play(); 
   
   p = new Player(); //Player
   doggy = loadImage("pug.png"); //Player Image
@@ -38,8 +34,8 @@ void setup()
   oldman = loadImage("oldman.jpg");
   oldman.resize(40,40); 
   
-  t = new Treats(); 
-  treats = loadImage("oldman.jpg");
+  t = new Treat(); 
+  treats = loadImage("doggytreat.jpg");
   treats.resize(40,40); 
   
   ( mazeImg = createMaze() ).resize(width, height);
@@ -55,6 +51,8 @@ void draw()
 {
 
   background(mazeImg); //background
+  //imageMode(CENTER);
+  //image(mazeImg,900,450); 
   
   p.display(); //player
   p.displayHealth(); 
@@ -64,6 +62,8 @@ void draw()
   e.move(); 
   e.confineToEdges(); 
  
+  t.display(); 
+  
   
 }
 
@@ -71,23 +71,3 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
 {
   p.on_keyPressed();
 }
-
-
-//================GRID CLASS================
-/*class Grid
- {
- String[][] data = new String[30][30];
- 
- Grid()
- {
- for(int j=0; j <30; j++)
- {
- for int i=0; i<30; i++)
- {
- data[j][i] = "2";
- //FINISH CODING THIS PART IF NEEDED 
- }
- }
- }
- }
- */

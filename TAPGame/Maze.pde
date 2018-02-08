@@ -25,12 +25,17 @@ PImage createMaze() {
   pg.beginDraw();
   pg.smooth();
   pg.strokeWeight(4);
-  pg.stroke(165,72,33);
+  pg.stroke(183, 74, 11);
   pg.fill(183, 74, 11);
   pg.background(bg);
 
-  pg.rect(-10, -10, 12, 780);
-  pg.rect(-10, -10, 1020, 12);
+  //rect(x-coor, y-coor, width, heigth)
+  pg.rect(1, 1, 5, 550);
+  pg.rect(1, 1, 900,3);
+  pg.rect(1, 548, 900, 3);
+  pg.rect(898, 1, 3,550);
+  
+  ///OTHER PARTS 
   pg.rect(996, -10, 12, 1020);
   pg.rect(0, 756, 1020, 12);
   pg.rect(0, 700, 100, 4);
