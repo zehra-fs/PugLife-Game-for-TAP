@@ -41,19 +41,26 @@ class Player
   {
     if ( key == CODED )
     {
-      if ( keyCode == RIGHT ) x= x + doggySpeed;
+      if ( keyCode == RIGHT ) x = x + doggySpeed;
       if ( keyCode == DOWN ) y = y + doggySpeed;
       if ( keyCode == LEFT )  x = x - doggySpeed;
       if ( keyCode == UP )   y = y - doggySpeed;
     }
-  } 
-
-  /*void on_keyPressed() 
+  }  
+ /*
+  void on_keyPressed() 
    {
-   } */
+      if ( key == CODED )
+    {
+      if ( keyCode == RIGHT ) p.moveRight();
+      if ( keyCode == DOWN ) p.moveDown();
+      if ( keyCode == LEFT )  p.moveLeft();
+      if ( keyCode == UP )  p.moveUp();
+    }
+   } 
 
   void moveLeft() {
-    color leftColor = get((int(posX) + (doggy.width/2 +1) ), int(posY)); 
+    color leftColor = get((int(posX) + 20), int(posY)); 
     if (leftColor != wallColor) 
     {
       x = x - doggySpeed;
@@ -61,7 +68,7 @@ class Player
   }
 
   void moveRight() {
-    color rightColor = get((int(posX)), int(posY)); 
+    color rightColor = get((int(posX) + 20 ), int(posY)); 
     if (rightColor != wallColor) {
       x= x + doggySpeed;
     }
@@ -77,14 +84,14 @@ class Player
     if (downColor != wallColor) { 
       y = y + doggySpeed;
     }
-  }
-
+  } 
+ */
   void displayHealth()
   {
     // EDIT: DISPLAYING HEALTH ON THE SCREEN 
     String health = str(p.getHealth()); 
     textFont(healthTxt, 30); // STEP 3 Specify font + size 
-    fill(232, 27, 27); // STEP 4 Specify font color 
+    fill(255, 255, 255); // STEP 4 Specify font color 
     text(health, 820, 50); // STEP 5 Display Text
   } 
 
