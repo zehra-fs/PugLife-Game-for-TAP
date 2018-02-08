@@ -33,7 +33,7 @@ void setup()
   oldman.resize(40,40); 
   
   t = new Treats(); 
-  treats = loadImage("oldman.jpg");
+  treats = loadImage("doggytreat.jpg");
   treats.resize(40,40); 
   
   ( mazeImg = createMaze() ).resize(width, height);
@@ -57,6 +57,9 @@ void draw()
   e.display(); 
   e.move(); 
   e.confineToEdges(); 
+  
+  t.display(); //doggy treat
+  
  
   
 }
