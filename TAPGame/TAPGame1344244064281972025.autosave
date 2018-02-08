@@ -1,30 +1,16 @@
-import processing.sound.*; 
-
-
-
 //****Game Setup****
-
-SoundFile file; 
-String audioName = "Eyeliner.mp3"; 
-String path; 
-
 static float posX; 
 static float posY; 
 PImage doggy, bg, oldman, mazeImg, treats; 
 Player p; 
-Enemy e;
-Treat t;
+Enemy e; 
+Treats t;
 PFont healthTxt; 
- 
 void setup()
 { 
-  size(1000, 650); //Canvas setup
-  bg = loadImage("lawn.jpg"); //load background image
+  size(900, 550); //Canvas setup
+ // bg = loadImage("lawn.jpg"); //load background image
   smooth(); 
-  
-  path = sketchPath(audioName); 
-  file = new SoundFile(this, path); 
-  file.play(); 
   
   p = new Player(); //Player
   doggy = loadImage("pug.png"); //Player Image
@@ -35,10 +21,9 @@ void setup()
   oldman = loadImage("oldman.jpg");
   oldman.resize(40,40); 
   
-
-  t = new Treat(); 
-  treats = loadImage("doggytreat.jpg");
-  treats.resize(40,40); 
+  t = new Treats();
+  treats = loadImage("doggy treat.jpg");
+  treats.resize(30,30);
   
   ( mazeImg = createMaze() ).resize(width, height);
   /* smooth(); 
@@ -53,8 +38,6 @@ void draw()
 {
 
   background(mazeImg); //background
-  //imageMode(CENTER);
-  //image(mazeImg,900,450); 
   
   p.display(); //player
   p.displayHealth(); 
@@ -64,17 +47,33 @@ void draw()
   e.move(); 
   e.confineToEdges(); 
   
-  t.display(); //doggy treat
-  
+  t.display(); //doggy treats
+  //t.confineToEdges();
  
-  t.display(); 
   
-  text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
-
 }
 
 void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
 {
   p.on_keyPressed();
-
 }
+
+
+//================GRID CLASS================
+/*class Grid
+ {
+ String[][] data = new String[30][30];
+ 
+ Grid()
+ {
+ for(int j=0; j <30; j++)
+ {
+ for int i=0; i<30; i++)
+ {
+ data[j][i] = "2";
+ //FINISH CODING THIS PART IF NEEDED 
+ }
+ }
+ }
+ }
+ */
