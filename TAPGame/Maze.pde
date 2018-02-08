@@ -28,7 +28,7 @@ PImage createMaze() {
   pg.stroke(183, 74, 11);
   pg.fill(183, 74, 11);
   pg.background(bg);
-
+  
   //rect(x-coor, y-coor, width, heigth)
   pg.rect(1, 1, 5, 550);
   pg.rect(1, 1, 900,3);

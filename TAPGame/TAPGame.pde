@@ -1,9 +1,9 @@
-//import processing.sound.*; 
+import processing.sound.*; 
 
 
 //****Game Setup****
 
-//SoundFile file; 
+SoundFile file; 
 String audioName = "Eyeliner.mp3"; 
 String path; 
 
@@ -22,8 +22,8 @@ void setup()
   smooth(); 
   
   path = sketchPath(audioName); 
-  //file = new SoundFile(this, path); 
-  //file.play(); 
+  file = new SoundFile(this, path); 
+  file.play(); 
   
   p = new Player(); //Player
   doggy = loadImage("pug.png"); //Player Image
@@ -64,10 +64,12 @@ void draw()
  
   t.display(); 
   
-  
+  text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
+
 }
 
 void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
 {
   p.on_keyPressed();
+
 }
