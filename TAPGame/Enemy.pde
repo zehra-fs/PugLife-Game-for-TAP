@@ -29,7 +29,8 @@ class Enemy
     image(oldman, x,y); 
   }
   //Keeps enemies from going off the screen
-  void confineToEdges() {
+  void confineToEdges() 
+  {
     x = constrain(x, 5, 890);
     y = constrain(y, 5, 540);
   }

@@ -2,8 +2,14 @@
 
 
 //****Game Setup****
+<<<<<<< HEAD
+SoundFile file; 
+//String audioName = "AfireLove.mp3"; 
+=======
 //SoundFile file; 
+>>>>>>> 91b7cdf00f45839d3a65fecae640c4925df67695
 String audioName = "Eyeliner.mp3"; 
+
 String path; 
 
 static float posX; 

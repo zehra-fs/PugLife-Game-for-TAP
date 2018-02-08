@@ -35,8 +35,10 @@ class Player
     image(doggy, x, y);
   }
 
-  void on_keyPressed() {
-    if ( key == CODED ) {
+  void on_keyPressed() 
+  {
+    if ( key == CODED )
+    {
       if ( keyCode == RIGHT ) x= x + doggySpeed;
       if ( keyCode == DOWN ) y = y + doggySpeed;
       if ( keyCode == LEFT )  x = x - doggySpeed;
@@ -53,7 +55,8 @@ class Player
   } 
 
   //Keeps doggy from going off the screen
-  void confineToEdges() {
+  void confineToEdges()
+  {
     x = constrain(x, 5, 890);
     y = constrain(y, 5, 540);
   }
