@@ -4,14 +4,14 @@ class Player
 {
 
   int d; 
-  float x, y; 
+  float posX, posY; 
   float start_x = 30; 
   float start_y = 30; 
   int doggySpeed; 
   boolean isDead = false; 
   int health; 
   color wallColor = color(183, 74, 11); 
-
+  color leftColor; 
   Player()
   {
     reset();
@@ -20,8 +20,8 @@ class Player
   void reset()
   {
     health = 100; 
-    x = start_x; 
-    y = start_y; 
+    posX = start_x; 
+    posY = start_y; 
     d = 0; 
     doggySpeed = 5;
   }
@@ -34,10 +34,10 @@ class Player
   void display()
   {
     imageMode(CENTER); 
-    image(doggy, x, y);
+    image(doggy, posX, posY);
   }
 
-  void on_keyPressed() 
+ /*void on_keyPressed() 
   {
     if ( key == CODED )
     {
@@ -47,45 +47,54 @@ class Player
       if ( keyCode == UP )   y = y - doggySpeed;
     }
   }  
- /*
+ */ 
   void on_keyPressed() 
    {
       if ( key == CODED )
     {
-      if ( keyCode == RIGHT ) p.moveRight();
-      if ( keyCode == DOWN ) p.moveDown();
-      if ( keyCode == LEFT )  p.moveLeft();
-      if ( keyCode == UP )  p.moveUp();
+      if ( keyCode == RIGHT ) moveRight();
+      if ( keyCode == DOWN ) moveDown();
+      if ( keyCode == LEFT )  moveLeft();
+      if ( keyCode == UP )  moveUp();
     }
    } 
 
   void moveLeft() {
-    color leftColor = get((int(posX) + 20), int(posY)); 
+    leftColor = get((int(posX)-(doggy.width/2 + doggySpeed)), int(posY));  //<>//
     if (leftColor != wallColor) 
-    {
-      x = x - doggySpeed;
+   {
+      posX = posX- doggySpeed; 
     }
   }
 
   void moveRight() {
-    color rightColor = get((int(posX) + 20 ), int(posY)); 
+    color rightColor = get((int(posX) + (doggy.width/2+1) + doggySpeed), int(posY)); 
     if (rightColor != wallColor) {
-      x= x + doggySpeed;
+      posX= posX+ doggySpeed;
     }
+   
   }
   void moveUp() {
-    color upColor = get(int(posX), (int(posY)-(doggy.width/2 +1))); 
+    color upColor = get(int(posX), (int(posY)-(doggy.width/2 + doggySpeed))); 
     if (upColor != wallColor) {
-      y = y - doggySpeed;
+      posY = posY - doggySpeed;
     }
   }
   void moveDown() {
-    color downColor = get(int(posX), (int(posY) + (doggy.width/2+1))); 
+    color downColor = get(int(posX), (int(posY) + (doggy.width/2+1) + doggySpeed)); 
     if (downColor != wallColor) { 
-      y = y + doggySpeed;
+      posY = posY + doggySpeed;
     }
   } 
- */
+  
+ /* void checkCollision() {
+   color touchUp = path.get(posX, posY); 
+   color touchRight = path.get(posX + playerW, posY); 
+   color touchDown = path.get(posX + playerW, posY + playerH); 
+   color touchLeft = path.get(posX, posY + playerH); 
+  }
+  */ 
+  
   void displayHealth()
   {
     // EDIT: DISPLAYING HEALTH ON THE SCREEN 
@@ -98,8 +107,8 @@ class Player
   //Keeps doggy from going off the screen
   void confineToEdges()
   {
-    x = constrain(x, 5, 990);
-    y = constrain(y, 5, 640);
+    posX = constrain(posX, 5, 990);
+    posY = constrain(posY, 5, 640);
   }
 
   //========================

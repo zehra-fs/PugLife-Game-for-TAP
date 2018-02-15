@@ -29,11 +29,15 @@ PImage createMaze() {
   pg.fill(183, 74, 11);
   pg.background(bg);
   
-  //rect(x-coor, y-coor, width, heigth)
-  pg.rect(1, 1, 5, 550);
+  
+  /*1. Open up the game and record the X/Y coordinates of where you want the rectangle to be. Remember, the coordinates are for the UPPER-LEFT CORNER of the rectangle.
+    2. Decide the width and the height of the rectangle. You can subtract the coordinates shown on the mouse. Trace your mouse over the game for the desired width and height.
+    3. Draw the rectangle using this method: rect(x-coor, y-coor, width, height); */ 
+  pg.rect(1, 1, 3, 550);
   pg.rect(1, 1, 900,3);
   pg.rect(1, 548, 900, 3);
   pg.rect(898, 1, 3,550);
+ // pg.rect(180,269,85, 115); 
   
   ///OTHER PARTS 
   pg.rect(996, -10, 12, 1020);
@@ -106,7 +110,7 @@ PImage createMaze() {
   pg.rect(820, 160, 4, 160);
   pg.rect(890, 280, 4, 120);
   pg.rect(880, 220, 60, 4);
-
+ 
   pg.endDraw();
 
   return pg.get();

@@ -19,7 +19,7 @@ PFont healthTxt;
 void setup()
 { 
   size(1000, 650); //Canvas setup
-  bg = loadImage("lawn.jpg"); //load background image
+  bg = loadImage("lawn.png"); //load background image
   smooth(); 
   
   path = sketchPath(audioName); 
