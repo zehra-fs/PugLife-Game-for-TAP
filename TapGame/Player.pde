@@ -30,7 +30,16 @@ class Player
   {
     return health;
   }
-
+ 
+  float getXPos()
+  {
+    return posX;
+  }
+  
+  float getYPos()
+  { 
+    return posY; 
+  }
   void display()
   {
     imageMode(CENTER); 

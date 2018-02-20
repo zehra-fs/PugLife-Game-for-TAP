@@ -64,10 +64,11 @@ void draw()
   e.move(); 
   e.confineToEdges(); 
   
+ 
   t.display(); //doggy treat
   
- 
-  t.display(); 
+  
+
   
   text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
 
