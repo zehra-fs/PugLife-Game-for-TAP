@@ -10,10 +10,11 @@ String path;
 
 static float posX; 
 static float posY; 
-PImage doggy, bg, oldman, mazeImg, treats; 
+PImage doggy, bg, oldman, mazeImg, treats, house; 
 Player p; 
 Enemy e;
 Treat t;
+House h;
 PFont healthTxt; 
  
 void setup()
@@ -40,6 +41,10 @@ void setup()
   treats = loadImage("doggytreat.jpg");
   treats.resize(40,40); 
   
+  h = new House();
+  house = loadImage("house.jpg");
+  house.resize(80,80);
+  
   ( mazeImg = createMaze() ).resize(width, height);
   /* smooth(); 
    frameRate(120); 
@@ -65,9 +70,8 @@ void draw()
   e.confineToEdges(); 
   
   t.display(); //doggy treat
-  
- 
   t.display(); 
+  h.display();
   
   text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
 
