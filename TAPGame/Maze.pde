@@ -46,9 +46,9 @@ PImage createMaze() {
   pg.rect(52, 82, 31, 268);
   pg.rect(142, 82, 31, 93);
   pg.rect(85, 319, 162, 31);
-  pg.rect(220, 228 ,30, 45); 
+  pg.rect(220, 228 ,31, 45); 
   pg.rect(142, 240, 31, 80); 
-  pg.rect(220, 320, 30, 111);
+  pg.rect(220, 320, 31, 111);
   pg.rect(1, 400, 220, 31);
   pg.rect(52, 475, 31, 40);
   pg.rect(135, 475, 31, 40);
@@ -71,6 +71,15 @@ PImage createMaze() {
   pg.rect(660, 240, 31, 140);//ccurent one
   pg.rect(540, 350, 355, 31);
   pg.rect(820, 295, 31, 82);
+  pg.rect(540, 350, 31, 90);
+  pg.rect(315, 409, 223, 31);
+  pg.rect(315, 409, 31, 80);
+  pg.rect(780, 440, 31, 105);
+  pg.rect(400, 490, 31, 90); //bottoms up
+  pg.rect(485, 420, 31, 75); //top bottoms
+  pg.rect(575, 490, 31, 105); //bottoms up
+  pg.rect(665, 375, 31, 90); //top bottoms
+  pg.rect(640, 520, 100, 31);
   
   ///OTHER PARTS 
  /* pg.rect(996, -10, 12, 1020);
