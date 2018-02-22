@@ -41,45 +41,41 @@ PImage createMaze() {
   
   //the maze i started
    //rect(x-coor, y-coor, width, heigth)
-  pg.rect(52, 1, 165, 31);
-  pg.rect(220, 1, 31, 165);
-  pg.rect(52, 82, 31, 268);
-  pg.rect(142, 82, 31, 93);
-  pg.rect(85, 319, 162, 31);
-  pg.rect(220, 228 ,31, 45); 
-  pg.rect(142, 240, 31, 80); 
-  pg.rect(220, 320, 31, 111);
-  pg.rect(1, 400, 220, 31);
-  pg.rect(52, 475, 31, 40);
-  pg.rect(135, 475, 31, 40);
-  pg.rect(220, 475, 31, 40);
-  pg.rect(220, 150, 111, 31);
-  //rect(x-coor, y-coor, width, heigth)
-  pg.rect(300, 75, 31, 198); //this one
-  pg.rect(300, 50, 75, 31);
-  pg.rect(220, 320, 250, 31); //dis one
-  pg.rect(450, 230, 31, 120); //ok, dis one
-  pg.rect(400, 230, 50, 31);
-  pg.rect(400, 165, 31, 95);
-  pg.rect(400, 134, 80, 31);
-  pg.rect(450, 50, 31, 115); //current one
-  pg.rect(442, 134, 300, 31); //c1
-  pg.rect(450, 50, 395, 31); //top left
-  pg.rect(742, 134, 31, 160);
-  pg.rect(742, 190, 100, 31);
-  pg.rect(540, 230, 150, 31);//previous
-  pg.rect(660, 240, 31, 140);//ccurent one
-  pg.rect(540, 350, 355, 31);
-  pg.rect(820, 295, 31, 82);
-  pg.rect(540, 350, 31, 90);
-  pg.rect(315, 409, 223, 31);
-  pg.rect(315, 409, 31, 80);
-  pg.rect(780, 440, 31, 105);
-  pg.rect(400, 490, 31, 90); //bottoms up
-  pg.rect(485, 420, 31, 75); //top bottoms
-  pg.rect(575, 490, 31, 105); //bottoms up
-  pg.rect(665, 375, 31, 90); //top bottoms
-  pg.rect(640, 520, 100, 31);
+  pg.rect(185, 1, 15, 340); //c4
+  pg.rect(52, 1, 15, 340); //current one
+  pg.rect(120, 60, 15, 350); //c2
+  pg.rect(250, 60, 15, 350); //current
+  pg.rect(1, 400, 264, 15); //now
+  pg.rect(52, 475, 15, 40); //threee small ones at the bottom left
+  pg.rect(135, 475, 15, 40); //threee small ones at the bottom left 
+  pg.rect(220, 475, 15, 40); //threee small ones at the bottom left
+  pg.rect(250, 50, 130, 15); //next
+  pg.rect(250, 320, 210, 15); //next2
+  pg.rect(450, 230, 15, 105); //next3
+  pg.rect(320, 260, 80, 15); //next4
+  pg.rect(355, 115, 15, 150); //next5
+  pg.rect(320, 115, 80, 15); //next6
+  pg.rect(320, 188, 80, 15); //next7
+  pg.rect(450, 50, 15, 115); //next8
+  pg.rect(450, 134, 300, 15); //next9
+  pg.rect(450, 50, 395, 15); //next10
+  pg.rect(742, 134, 15, 160);//next11
+  pg.rect(742, 190, 100, 15); //next12
+  pg.rect(540, 200, 200, 15);//next13
+  pg.rect(540, 200, 15, 90); //next14
+  pg.rect(460, 250, 95, 15);//next15 
+  pg.rect(670, 265, 15, 90);//next16
+  pg.rect(540, 350, 355, 15);//next17
+  pg.rect(820, 265, 15, 95);//next18
+  pg.rect(600, 300, 15, 90);//next19
+  pg.rect(315, 409, 223, 15);
+  pg.rect(315, 409, 15, 80);
+  pg.rect(780, 440, 15, 105);
+  pg.rect(400, 490, 15, 90); //bottoms up
+  pg.rect(485, 420, 15, 75); //top bottoms
+  pg.rect(575, 490, 15, 105); //bottoms up
+  pg.rect(665, 375, 15, 90); //top bottoms
+  pg.rect(640, 520, 100, 15);
   
   ///OTHER PARTS 
  /* pg.rect(996, -10, 12, 1020);
