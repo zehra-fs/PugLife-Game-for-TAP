@@ -16,19 +16,21 @@ Enemy e;
 Treat t;
 House h;
 PFont healthTxt; 
- 
+color wallColor = color(183, 74, 11); 
+
 void setup()
 { 
   size(1000, 650); //Canvas setup
   bg = loadImage("lawn.png"); //load background image
   smooth(); 
   
-  path = sketchPath(audioName); 
-  file = new SoundFile(this, path); 
-  file.play(); 
+ path = sketchPath(audioName); 
+ file = new SoundFile(this, path); 
+ file.play(); 
+ file.amp(0.2);
   
   p = new Player(); //Player
-  doggy = loadImage("pug.png"); //Player Image
+  doggy = loadImage("vet.png"); //Player Image
   doggy.resize(35, 40);
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
 
@@ -38,7 +40,7 @@ void setup()
   
 
   t = new Treat(); 
-  treats = loadImage("doggytreat.jpg");
+  treats = loadImage("bone.png");
   treats.resize(40,40); 
   
   h = new House();
@@ -72,7 +74,6 @@ void draw()
  
   t.display(); //doggy treat
 
-  t.display(); 
   h.display();
 
   
