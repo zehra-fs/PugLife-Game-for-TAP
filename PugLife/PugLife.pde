@@ -8,8 +8,8 @@ SoundFile file;
 String audioName = "Eyeliner.mp3"; 
 String path; 
 
-static float posX; 
-static float posY; 
+static float x; 
+static float y; 
 PImage doggy, bg, oldman, mazeImg, treats, house; 
 Player p; 
 Enemy e;
