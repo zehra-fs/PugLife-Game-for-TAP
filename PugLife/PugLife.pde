@@ -21,7 +21,7 @@ color wallColor = color(183, 74, 11);
 void setup()
 { 
   size(1000, 650); //Canvas setup
-  bg = loadImage("lawn.png"); //load background image
+  bg = loadImage("TiledBg.png"); //load background image
   smooth(); 
   frameRate(120); 
   
@@ -48,7 +48,7 @@ void setup()
   house = loadImage("house.jpg");
   house.resize(80,80);
   
-  ( mazeImg = createMaze() ).resize(width, height);
+ // ( mazeImg = createMaze() ).resize(width, height);
   /* smooth(); 
    frameRate(120); 
    
@@ -60,7 +60,7 @@ void setup()
 void draw()
 {
 
-  background(mazeImg); //background
+  background(bg); //background
   //imageMode(CENTER);
   //image(mazeImg,900,450); 
   
