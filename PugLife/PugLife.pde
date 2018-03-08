@@ -76,7 +76,7 @@ void draw()
   h.display();
 
   
-  text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
+  //text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
 
 }
 
