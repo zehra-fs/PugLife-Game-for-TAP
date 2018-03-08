@@ -21,7 +21,7 @@ color wallColor = color(183, 74, 11);
 void setup()
 { 
   size(1000, 650); //Canvas setup
-  bg = loadImage("TiledBg.png"); //load background image
+  bg = loadImage("TiledBg1.png"); //load background image
   smooth(); 
   frameRate(120); 
   

@@ -27,7 +27,6 @@ PImage createMaze() {
   pg.strokeWeight(4);
   pg.stroke(183, 74, 11);
   pg.fill(183, 74, 11);
-
   pg.background(bg);
   
   
