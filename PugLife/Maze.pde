@@ -17,7 +17,7 @@
     rect(x,y,w,h);
   }
  
-} */ 
+} */
 
 PImage createMaze() {
   final PGraphics pg = createGraphics(900, 550, JAVA2D);
@@ -27,6 +27,7 @@ PImage createMaze() {
   pg.strokeWeight(4);
   pg.stroke(183, 74, 11);
   pg.fill(183, 74, 11);
+
   pg.background(bg);
   
   
@@ -81,4 +82,5 @@ PImage createMaze() {
   pg.endDraw();
 
   return pg.get();
+  
 }
