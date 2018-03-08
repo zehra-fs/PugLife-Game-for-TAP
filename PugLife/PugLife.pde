@@ -36,8 +36,8 @@ void setup()
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
 
   e = new Enemy(); 
-  oldman = loadImage("oldman.jpg");
-  oldman.resize(40,40); 
+  oldman = loadImage("oldMan1.png");
+  oldman.resize(60,60); 
   
 
   t = new Treat(); 
@@ -45,8 +45,8 @@ void setup()
   treats.resize(40,40); 
   
   h = new House();
-  house = loadImage("house.jpg");
-  house.resize(80,80);
+  house = loadImage("dogHouse1.png");
+  house.resize(90,90);
   
  // ( mazeImg = createMaze() ).resize(width, height);
   /* smooth(); 

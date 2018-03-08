@@ -2,10 +2,10 @@
 class Enemy 
 {
   float x, y; 
-  int start_x = 40;
+  int start_x = 200;
   int start_y = 528; 
   int type; //If we have time to make more than one kind of enemy 
-  int manSpeed = 3;
+  int manSpeed = 1;
   boolean isStopped = false; 
   int count; 
 
