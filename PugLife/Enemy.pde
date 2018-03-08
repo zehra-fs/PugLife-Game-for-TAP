@@ -7,7 +7,7 @@ class Enemy
   int type; //If we have time to make more than one kind of enemy 
   int manSpeed = 3;
   boolean isStopped = false; 
-  int d = 1; 
+  int count; 
 
   Enemy()
   {
@@ -29,49 +29,66 @@ class Enemy
 
   void moveHoriz()
   {
-    boolean goRight = false, goLeft = false; 
+     color leftColor = get((int(x)-(oldman.width/2 + manSpeed)), int(y)); 
+     color rightColor = get((int(x) + (oldman.width/2) + manSpeed), int(y));
+   
+    
+    if (leftColor == wallColor ) count = 1; 
+    if (rightColor == wallColor) count = 0;  //<>//
+   
+      if (count == 1) x++; 
+      else if (count == 0) x--;  //<>//
+      
+   /* boolean goRight = false, goLeft = false; 
     color leftColor = get((int(x)-(oldman.width/2 + manSpeed)), int(x)); 
     color rightColor = get((int(x) + (oldman.width/2+1) + manSpeed), int(y));
+    x--;
     
     if (leftColor != wallColor && rightColor == wallColor)
     { 
-     goLeft = true; 
-     
+      while (leftColor != wallColor) x--; 
+   
     }
+    
     else if (leftColor == wallColor && rightColor != wallColor) 
     { 
-      goRight = true; 
+       while (rightColor != wallColor) x++; 
     }
-    else goLeft = true; 
+  */ 
+   
     
-    if (goLeft == true) x--; 
-    else if (goRight == true) x++; 
+   
   }
   void moveLeft() 
   {
     color leftColor = get((int(x)-(oldman.width/2 + manSpeed)), int(x)); 
-    if (leftColor != wallColor) 
+    
+    if (leftColor != wallColor && count == 0) 
     {
       x--;
-      d = 1; 
-      isStopped = false;
+   //   d = 1; 
+     // isStopped = false;
     } 
+    
+    else 
+   {
+     
+   }
 
-    x++;
+    
   }
 
   void moveRight() 
   {
     color rightColor = get((int(x) + (oldman.width/2+1) + manSpeed), int(y)); 
-    if (rightColor == wallColor) 
-    {
-      moveLeft();
-      isStopped = false;
-    } else 
+    if (rightColor != wallColor) 
     {
       x++; 
-      isStopped = true;
-      //  d--;
+      isStopped = false;
+    } 
+    else 
+    { 
+      moveLeft(); 
     }
   }
   void moveUp()

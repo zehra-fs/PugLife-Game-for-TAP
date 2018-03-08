@@ -23,6 +23,7 @@ void setup()
   size(1000, 650); //Canvas setup
   bg = loadImage("lawn.png"); //load background image
   smooth(); 
+  frameRate(120); 
   
  path = sketchPath(audioName); 
  file = new SoundFile(this, path); 
