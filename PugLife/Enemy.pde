@@ -2,8 +2,8 @@
 class Enemy 
 {
   float x, y; 
-  int start_x = 300;
-  int start_y = 849; 
+  int start_x = 313;
+  int start_y = 525; 
   int type; //If we have time to make more than one kind of enemy 
   
   
@@ -20,8 +20,41 @@ class Enemy
   
   void move() //Edit after creating the maze to avoid collision
   {
-    y--; 
+   color upColor = get(int(x), (int(y)-(oldman.width/2))); 
+    if (upColor != wallColor) {
+      y = y--;
+    } //<>//
   }
+   
+   // movement 
+   void moveLeft() {
+   color leftColor = get((int(posX)-(oldman.width/2)), int(posY)); 
+    if (leftColor != wallColor) 
+   {
+      posX = posX--; 
+    }
+  }
+
+  void moveRight() {
+    color rightColor = get((int(posX) + (oldman.width/2+1)), int(posY)); 
+    if (rightColor != wallColor) {
+      posX= posX++;
+    }
+   
+  }
+  void moveUp() {
+    color upColor = get(int(posX), (int(posY)-(oldman.width/2))); 
+    if (upColor != wallColor) {
+      posY = posY--;
+    }
+  }
+  void moveDown() {
+    color downColor = get(int(posX), (int(posY) + (oldman.width/2+1))); 
+    if (downColor != wallColor) { 
+      posY = posY++;
+    }
+  } 
+  
   
   void display()
   {

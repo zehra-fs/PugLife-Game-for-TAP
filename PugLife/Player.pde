@@ -10,8 +10,7 @@ class Player
   int doggySpeed; 
   boolean isDead = false; 
   int health; 
-  color wallColor = color(183, 74, 11); 
-  color leftColor; 
+
   Player()
   {
     reset();
@@ -69,7 +68,7 @@ class Player
    } 
 
   void moveLeft() {
-    leftColor = get((int(posX)-(doggy.width/2 + doggySpeed)), int(posY));  //<>//
+   color leftColor = get((int(posX)-(doggy.width/2 + doggySpeed)), int(posY));  //<>//
     if (leftColor != wallColor) 
    {
       posX = posX- doggySpeed; 
