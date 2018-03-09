@@ -15,12 +15,12 @@ PImage doggy, bg, oldman, oldman2, mazeImg, house, treats;
 Treat[] treatList = new Treat[10];
 Player p; 
 Enemy e;
-Treat t;
+//Treat t;
 House h;
 PFont healthTxt; 
 color wallColor = color(183, 74, 11); 
 int countH, countV, score; 
-boolean isEaten = false; 
+boolean isEaten = false, gameOver = true, startGuide = true; 
 
 void setup()
 { 
@@ -38,7 +38,8 @@ void setup()
   doggy = loadImage("pug.png"); //Player Image
   doggy.resize(35, 40);
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
-
+   
+  
   e = new Enemy(); 
   oldman = loadImage("oldMan1.png");
   oldman.resize(60, 60); 
@@ -61,7 +62,21 @@ void setup()
 
 void draw()
 {
-
+  if (startGuide == true && gameOver == true) 
+  {
+    
+    background(#33cc33); 
+    text("Press 's' to start the game!", 350,200); 
+  }
+  if (gameOver == true && startGuide == false) 
+  {
+    background(bg); 
+    text("OOPS! YOU'VE DIED! Click to restart", 250, 350); 
+  }
+  
+ if (gameOver == false && startGuide == false) 
+ {
+   startGuide = false; 
   background(bg); //background
 
   p.display(); //player
@@ -94,9 +109,19 @@ void draw()
       treatList[i].setEaten(true);
     }
   }
+  
+  if (p.getYPos() <= e.getY() + 30 && p.getYPos() >= e.getY() - 30
+      && p.getXPos() <= e.getX() + 30 && p.getXPos() >= e.getX() - 30 ) gameOver = true;
+ }
 }
 
 void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
 {
+  if (mousePressed) gameOver = false;
+  if (key == 's') 
+  {
+    gameOver = false; 
+    startGuide = false;
+  }
   p.on_keyPressed();
 }

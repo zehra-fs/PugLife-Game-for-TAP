@@ -19,6 +19,16 @@ class Enemy
     y = start_y;
   }
 
+  float getY()
+  {
+    return y;
+  }
+  
+  float getX()
+  { 
+    return x; 
+  }
+  
   void move() 
   { 
     moveVert();
@@ -66,6 +76,8 @@ class Enemy
       image(oldman, x, y);
     } else image(oldman2, x, y);
   }
+  
+  
   //Keeps enemies from going off the screen
   void confineToEdges() 
   {
