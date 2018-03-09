@@ -9,7 +9,6 @@ class Player
   float start_y = 30; 
   int doggySpeed; 
   boolean isDead = false; 
-  int health; 
 
   Player()
   {
@@ -18,17 +17,21 @@ class Player
 
   void reset()
   {
-    health = 100; 
+    score = 100; 
     posX = start_x; 
     posY = start_y; 
     d = 0; 
-    doggySpeed = 5;
+    doggySpeed = 4;
   }
 
-  int getHealth()
+  int getScore()
   {
-    return health;
+    return score;
   }
+ void setScore(int newScore)
+ {
+   score = newScore; 
+ }
  
   float getXPos()
   {
@@ -103,13 +106,13 @@ class Player
   }
   */ 
   
-  void displayHealth()
+  void displayScore()
   {
     // EDIT: DISPLAYING HEALTH ON THE SCREEN 
-    String health = str(p.getHealth()); 
+    String score = str(p.getScore()); 
     textFont(healthTxt, 30); // STEP 3 Specify font + size 
     fill(255, 255, 255); // STEP 4 Specify font color 
-    text(health, 820, 50); // STEP 5 Display Text
+    text(score, 820, 50); // STEP 5 Display Text
   } 
 
   //Keeps doggy from going off the screen

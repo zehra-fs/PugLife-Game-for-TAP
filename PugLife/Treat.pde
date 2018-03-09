@@ -2,10 +2,10 @@
 
 //=========Treat Class=======
 class Treat {
-  float start_x = random(100,600); 
-  float start_y = random(100,600); 
+  float start_x = random(10,990); 
+  float start_y  = random(10,640); 
   float x, y; 
-  boolean isEaten; 
+  
   Treat()
   {
     x = start_x; 
@@ -27,19 +27,15 @@ class Treat {
   {
     return isEaten; 
   }
-  void display()
+  
+  void setEaten(boolean eatenVal)
   {
-    /* for(int i = 0; i < 10; i++)
-     { 
-    float x = random(100, 500);
-    float y = random(100, 500); */ 
+    isEaten = eatenVal; 
+  }
+  
+  void display()
+  {  
     imageMode(CENTER); 
     image(treats, x, y);
-    if (p.getXPos() == t.getXPos() && p.getYPos() == t.getYPos())
-  {
-    tint(#ffffff, 0.0); 
-    
-  }
-    
   }
 }
