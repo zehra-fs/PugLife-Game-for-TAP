@@ -25,7 +25,7 @@ boolean isEaten = false, gameOver = true, startGuide = true;
 void setup()
 { 
   size(1000, 650); //Canvas setup
-  bg = loadImage("pugLifeBground.png"); //load background image
+  bg = loadImage("TiledBg.png"); //load background image
   bg.resize(1000, 650);
   smooth(); 
   frameRate(120); 
@@ -122,6 +122,7 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
   if (key == 's') 
   {
     gameOver = false; 
+    
     startGuide = false;
   }
   p.on_keyPressed();
