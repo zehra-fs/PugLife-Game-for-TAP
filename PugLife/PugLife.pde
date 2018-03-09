@@ -12,20 +12,22 @@ static float x;
 static float y; 
 PImage doggy, bg, oldman, oldman2, mazeImg, house, treats;
 
-Treat[] treatList = new Treat[10];
+ArrayList<Treat> treatList = new ArrayList<Treat>();
+ArrayList<Treat> treatsEatenList = new ArrayList<Treat>();
+
 Player p; 
 Enemy e;
-//Treat t;
+Treat t;
 House h;
 PFont healthTxt; 
-color wallColor = color(183, 74, 11); 
+color wallColor = color(183,74,11); 
 int countH, countV, score; 
 boolean isEaten = false, gameOver = true, startGuide = true; 
 
 void setup()
 { 
   size(1000, 650); //Canvas setup
-  bg = loadImage("TiledBg.png"); //load background image
+  bg = loadImage("TiledBgtest.png"); //load background image
   bg.resize(1000, 650);
   smooth(); 
   frameRate(120); 
@@ -50,7 +52,8 @@ void setup()
   // t = new Treat(); 
   for (int i = 0; i < 10; i++)
   {
-    treatList[i] = new Treat();
+    t = new Treat(); 
+    treatList.add(t); 
   }
 
   treats = loadImage("bone.png");
@@ -79,6 +82,8 @@ void draw()
  {
    startGuide = false; 
   background(bg); //background
+ // image(bg, 500, 325);
+
 
   p.display(); //player
   p.displayScore(); 
@@ -92,22 +97,23 @@ void draw()
   h.display();
   text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
 
-  for (int i = 0; i < treatList.length; i++)
+  for (int i = 0; i < treatList.size(); i++)
   { 
-    if (treatList[i].getEaten() == false) 
-    {
-      treatList[i].display(); //doggy treat
-    }
+    
+      treatList.get(i).display(); //doggy treat
+    
   }
 
-  for (int i = 0; i < treatList.length; i++) 
-  { // USE ARRAYLISTS INSTEAD> REVAMP REVAMP REVAMP!!!!
-    if (p.getYPos() == treatList[i].getYPos() && p.getXPos() == treatList[i].getXPos())
-    /*(p.getYPos() <= treatList[i].getYPos() + 30 && p.getYPos() >= treatList[i].getYPos() - 30
-      && p.getXPos() <= treatList[i].getXPos() + 30 && p.getXPos() >= treatList[i].getXPos() - 30 )
-    */ {
+  for (int i = 0; i < treatList.size(); i++) 
+  { 
+    if /*(p.getYPos() == treatList[i].getYPos() && p.getXPos() == treatList[i].getXPos())
+    */ (p.getYPos() <= treatList.get(i).getYPos() + 30 && p.getYPos() >= treatList.get(i).getYPos() - 30
+      && p.getXPos() <= treatList.get(i).getXPos() + 30 && p.getXPos() >= treatList.get(i).getXPos() - 30 )
+     {
       p.setScore(p.getScore() + 50); //Increase player score
-      treatList[i].setEaten(true);
+      treatList.get(i).setEaten(true);
+      treatsEatenList.add(treatList.get(i)); 
+      treatList.remove(i); 
     }
   }
   

@@ -36,8 +36,9 @@ class Treat {
   
   void display()
   {  
+   
     imageMode(CENTER); 
     image(treats, x, y);
-
+    
   }
   }
