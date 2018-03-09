@@ -30,22 +30,7 @@ class Treat {
   
   void setEaten(boolean eatenVal)
   {
-<<<<<<< HEAD
-  /* for(int i = 0; i < width; i++){  
-   float x = random(width);
-   float y = random(height); 
-    imageMode(CENTER); 
-    image(treats, x, y);
-    
-   }*/
-   image(treats, x, y);
-    if (p.getXPos() == t.getXPos() && p.getYPos() == t.getYPos())
-  {
-    tint(#ffffff, 0.0); 
-    
-  }
-    
-=======
+
     isEaten = eatenVal; 
   }
   
@@ -53,6 +38,6 @@ class Treat {
   {  
     imageMode(CENTER); 
     image(treats, x, y);
->>>>>>> 35c90b2a6ad90da8007db581105cc35838779e75
+
   }
   }
