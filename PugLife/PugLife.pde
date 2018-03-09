@@ -25,7 +25,8 @@ boolean isEaten = false, gameOver = true, startGuide = true;
 void setup()
 { 
   size(1000, 650); //Canvas setup
-  bg = loadImage("TiledBg.png"); //load background image
+  bg = loadImage("pugLifeBground.png"); //load background image
+  bg.resize(1000, 650);
   smooth(); 
   frameRate(120); 
 
