@@ -1,13 +1,12 @@
-//===================ENEMY CLASS========= //<>// //<>// //<>// //<>//
+//===================ENEMY CLASS=========  //<>// //<>// //<>//
 class Enemy 
 {
   float x, y; 
-  int start_x = 200;
-  int start_y = 528; 
+  int start_x = 315;
+  int start_y = 533; 
   int type; //If we have time to make more than one kind of enemy 
   int manSpeed = 1;
-  boolean isStopped = false; 
-  int count; 
+
 
   Enemy()
   {
@@ -20,103 +19,65 @@ class Enemy
     y = start_y;
   }
 
+  float getY()
+  {
+    return y;
+  }
+  
+  float getX()
+  { 
+    return x; 
+  }
+  
   void move() 
   { 
-    moveHoriz();
+    moveVert();
   }
 
   // movement 
 
   void moveHoriz()
   {
-     color leftColor = get((int(x)-(oldman.width/2 + manSpeed)), int(y)); 
-     color rightColor = get((int(x) + (oldman.width/2) + manSpeed), int(y));
-   
-    
-    if (leftColor == wallColor ) count = 1; 
-    if (rightColor == wallColor) count = 0;  //<>//
-   
-      if (count == 1) x++; 
-      else if (count == 0) x--;  //<>//
-      
-   /* boolean goRight = false, goLeft = false; 
-    color leftColor = get((int(x)-(oldman.width/2 + manSpeed)), int(x)); 
-    color rightColor = get((int(x) + (oldman.width/2+1) + manSpeed), int(y));
-    x--;
-    
-    if (leftColor != wallColor && rightColor == wallColor)
-    { 
-      while (leftColor != wallColor) x--; 
-   
-    }
-    
-    else if (leftColor == wallColor && rightColor != wallColor) 
-    { 
-       while (rightColor != wallColor) x++; 
-    }
-  */ 
-   
-    
-   
-  }
-  void moveLeft() 
-  {
-    color leftColor = get((int(x)-(oldman.width/2 + manSpeed)), int(x)); 
-    
-    if (leftColor != wallColor && count == 0) 
-    {
-      x--;
-   //   d = 1; 
-     // isStopped = false;
-    } 
-    
-    else 
-   {
-     
-   }
+    color leftColor = get((int(x)-(oldman.width/2 + manSpeed)), int(y)); 
+    color rightColor = get((int(x) + (oldman.width/2) + manSpeed), int(y));
 
-    
+
+    if (leftColor == wallColor ) countH = 1; 
+    if (rightColor == wallColor) countH = 0; 
+
+    if (countH == 1) { 
+      x++;
+    } else if (countH == 0) x--;
   }
 
-  void moveRight() 
-  {
-    color rightColor = get((int(x) + (oldman.width/2+1) + manSpeed), int(y)); 
-    if (rightColor != wallColor) 
-    {
-      x++; 
-      isStopped = false;
-    } 
-    else 
-    { 
-      moveLeft(); 
-    }
-  }
-  void moveUp()
+  void moveVert()
   {
     color upColor = get(int(x), (int(y)-(oldman.width/2 + manSpeed))); 
-    if (upColor != wallColor)
-    {
-      isStopped = false;
-      y--;
-    } else isStopped = true;
-  }
-  void moveDown() 
-  {
     color downColor = get(int(x), (int(y) + (oldman.width/2+1) + manSpeed)); 
-    if (downColor != wallColor) 
-    { 
+    
+    if (upColor == wallColor ) countV = 1; 
+    if (downColor == wallColor) countV = 0; 
 
-      isStopped = false;
+    if (countV == 1) 
+    { 
       y++;
-    } else isStopped = true;
-  } 
+    } else if (countV == 0) y--;
+  }
+  
+  
 
 
   void display()
   {
     imageMode(CENTER); 
-    image(oldman, x, y);
+    if (countH == 0) 
+    {
+      //scale(-1.0, 1.0);
+      image(oldman, x, y);
+    } else image(oldman2, x, y);
   }
+  
+  
   //Keeps enemies from going off the screen
   void confineToEdges() 
   {
