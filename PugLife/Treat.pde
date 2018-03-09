@@ -29,12 +29,14 @@ class Treat {
   }
   void display()
   {
-    /* for(int i = 0; i < 10; i++)
-     { 
-    float x = random(100, 500);
-    float y = random(100, 500); */ 
+  /* for(int i = 0; i < width; i++){  
+   float x = random(width);
+   float y = random(height); 
     imageMode(CENTER); 
     image(treats, x, y);
+    
+   }*/
+   image(treats, x, y);
     if (p.getXPos() == t.getXPos() && p.getYPos() == t.getYPos())
   {
     tint(#ffffff, 0.0); 
@@ -42,4 +44,4 @@ class Treat {
   }
     
   }
-}
+  }
