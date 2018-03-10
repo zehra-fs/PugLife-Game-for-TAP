@@ -10,7 +10,7 @@ import processing.sound.*;
 
 static float x; 
 static float y; 
-PImage doggy, bg, oldman, oldman2, mazeImg, house, treats;
+PImage doggy, bg, oldman, oldman2, mazeImg, house,house1, treats;
 
 ArrayList<Treat> treatList = new ArrayList<Treat>();
 ArrayList<Treat> treatsEatenList = new ArrayList<Treat>();
@@ -27,9 +27,11 @@ int countH, countV, score;
 boolean isEaten = false, gameOver = true, startGuide = true; 
 color grass2 = color(114,222,60); 
 color grass1 = color(115,222,62);
+color tuft = color(63, 179,21);
 float start_x; 
 float start_y; 
 color spot; 
+int treatNumber = 1;
 
 void setup()
 { 
@@ -43,7 +45,7 @@ void setup()
   {
     for (int j = 0; j < bg.height -10; j++)
     {
-      if (bg.get(i, j) == grass1 || bg.get(i,j) == grass2)
+      if (bg.get(i, j) == grass1 || bg.get(i,j) == grass2 || bg.get(i,j) == tuft)
       {
         possiblePlacesH.add(i);
         possiblePlacesV.add(j); 
@@ -71,7 +73,7 @@ void setup()
 
   // t = new Treat(); 
   ArrayList usedSpots = new ArrayList(); 
-  for (int i = 0; i < 10; i++)
+  for (int i = 0; i < treatNumber; i++)
   { 
     int anySpot = (int) random(0, possiblePlacesH.size()); 
     if (!usedSpots.contains(anySpot)){
@@ -90,6 +92,8 @@ void setup()
   h = new House();
   house = loadImage("dogHouse1.png");
   house.resize(90, 90);
+  house1 = loadImage("dogHouseDone.png"); 
+  house1.resize(90,90); 
 
   //smooth(); 
   frameRate(120);
@@ -149,7 +153,12 @@ void draw()
     }
 
     if (p.getYPos() <= e.getY() + 30 && p.getYPos() >= e.getY() - 30
-      && p.getXPos() <= e.getX() + 30 && p.getXPos() >= e.getX() - 30 ) gameOver = true;
+      && p.getXPos() <= e.getX() + 30 && p.getXPos() >= e.getX() - 30 )
+      {
+        gameOver = true;
+      }
+      
+  
   }
 }
 
