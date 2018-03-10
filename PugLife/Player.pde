@@ -112,7 +112,7 @@ class Player
     String score = str(p.getScore()); 
     textFont(healthTxt, 30); // STEP 3 Specify font + size 
     fill(255, 255, 255); // STEP 4 Specify font color 
-    text(score, 820, 50); // STEP 5 Display Text
+    text(score, 835, 25); // STEP 5 Display Text
   } 
 
   //Keeps doggy from going off the screen
