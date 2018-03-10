@@ -12,7 +12,12 @@ class House{
   void display()
   {
 
-  imageMode(CENTER); 
+    imageMode(CENTER); 
     image(house, x, y);
+    
+     if (treatsEatenList.size() == treatNumber)
+   {  
+     image(house1, x, y); 
+   }
   }
 }

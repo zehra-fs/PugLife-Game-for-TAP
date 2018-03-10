@@ -17,7 +17,7 @@ class Player
 
   void reset()
   {
-    score = 100; 
+    score = 0; 
     posX = start_x; 
     posY = start_y; 
     d = 0; 
