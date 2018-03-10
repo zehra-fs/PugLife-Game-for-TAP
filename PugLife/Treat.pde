@@ -2,43 +2,57 @@
 
 //=========Treat Class=======
 class Treat {
-  float start_x = random(10,990); 
-  float start_y  = random(10,640); 
+   
   float x, y; 
+  //color grass1 = color(114,224,58); 
   
-  Treat()
+  boolean isOkay = false; 
+  
+  Treat(int this_x, int this_y)
   {
-    x = start_x; 
-    y = start_y;
-    isEaten = false; 
+   
+      x = this_x; 
+      y = this_y;
+    
+
+    isEaten = false;
   }
   
-   float getXPos()
+  boolean putHere()
+  {
+    start_x = random(10, 990); 
+    start_y = random(10, 640); 
+    spot = get(int(start_x), int(start_y)); 
+    if (spot == grass2) 
+    {
+      return true;
+    } else return false;
+  }
+  float getXPos()
   {
     return x;
   }
-  
+
   float getYPos()
   { 
-    return y; 
+    return y;
   }
-  
+
   boolean getEaten()
   {
-    return isEaten; 
+    return isEaten;
   }
-  
+
   void setEaten(boolean eatenVal)
   {
 
-    isEaten = eatenVal; 
+    isEaten = eatenVal;
   }
-  
+
   void display()
   {  
-   
+
     imageMode(CENTER); 
     image(treats, x, y);
-    
   }
-  }
+}

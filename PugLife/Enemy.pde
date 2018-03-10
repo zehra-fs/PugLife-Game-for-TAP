@@ -46,8 +46,8 @@ class Enemy
     if (rightColor == wallColor) countH = 0; 
 
     if (countH == 1) { 
-      x++;
-    } else if (countH == 0) x--;
+      x = x + manSpeed;
+    } else if (countH == 0) x = x - manSpeed;
   }
 
   void moveVert()
