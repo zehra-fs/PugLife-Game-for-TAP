@@ -10,7 +10,7 @@ String path, path1, path2, path3;
 
 static float x; 
 static float y; 
-PImage doggy, bg, mazeImg, house,house1, treats, screen1;
+PImage doggy, bg, mazeImg, house, house1, treats, screen1;
 PImage[] oldmanList = new PImage[10]; 
 
 ArrayList<Treat> treatList = new ArrayList<Treat>();
@@ -24,11 +24,11 @@ Treat t;
 House h;
 PFont healthTxt; 
 color wallColor = color(183, 74, 11); 
-int countH, countV, score; 
+int countH, countV, score, round = 0; 
 boolean isEaten = false, gameOver = true, startGuide = true; 
-color grass2 = color(114,222,60); 
-color grass1 = color(115,222,62);
-color tuft = color(63, 179,21);
+color grass2 = color(114, 222, 60); 
+color grass1 = color(115, 222, 62);
+color tuft = color(63, 179, 21);
 float start_x; 
 float start_y; 
 color spot; 
@@ -47,10 +47,10 @@ void setup()
   {
     for (int j = 0; j < bg.height -10; j++)
     {
-      if (bg.get(i, j) == grass1 || bg.get(i,j) == grass2 || bg.get(i,j) == tuft)
+      if (bg.get(i, j) == grass1 || bg.get(i, j) == grass2 || bg.get(i, j) == tuft)
       {
         possiblePlacesH.add(i);
-        possiblePlacesV.add(j); 
+        possiblePlacesV.add(j);
       }
     }
   }
@@ -59,65 +59,63 @@ void setup()
   path2 = sketchPath("grumpy.wav");
   path3 = sketchPath("doom.flac");
   file = new SoundFile(this, path); 
-  file.play(); 
   file.amp(0.2);
-  
+
   enemyFx = new SoundFile(this, path2);
   crunchFx = new SoundFile(this, path1); 
   doomFx = new SoundFile(this, path3); 
 
-  p = new Player(); //Player
   doggy = loadImage("pug.png"); //Player Image
   //doggy.resize(35, 40);
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
 
+  treats = loadImage("bone.png");
+  //  treats.resize(25, 25); 
+  house = loadImage("dogHouse1.png");
+  // house.resize(90, 90);
+  house1 = loadImage("dogHouseDone.png"); 
+  // house1.resize(90,90); 
 
-  e = new Enemy(220,463, 2, 1); 
-  e1 = new Enemy(113,335, 1, 5);
-  
-  for (int i = 0; i < oldmanList.length; i++)
-  {
-    if (i % 2 == 1) 
-    {
-      oldmanList[i] = loadImage("oldMan1.png");
-      //oldmanList[i].resize(60, 60); 
-    }
-    else 
-    {
-      oldmanList[i] = loadImage("oldMan1flip.png"); 
-     // oldmanList[i].resize(60, 60); 
-    }
-  }
-  
-  
+  //smooth(); 
+  frameRate(120);
+  reset(); 
+}
+void reset()
+{
+  file.play(); 
 
+  p = new Player(); //Player
+  h = new House();
   // t = new Treat(); 
   ArrayList usedSpots = new ArrayList(); 
   for (int i = 0; i < treatNumber; i++)
   { 
     int anySpot = (int) random(0, possiblePlacesH.size()); 
-    if (!usedSpots.contains(anySpot)){
-    usedSpots.add(anySpot); 
-    
-    t = new Treat((int)possiblePlacesH.get(anySpot), (int) possiblePlacesV.get(anySpot)); 
-    treatList.add(t);
+    if (!usedSpots.contains(anySpot)) {
+      usedSpots.add(anySpot); 
+
+      t = new Treat((int)possiblePlacesH.get(anySpot), (int) possiblePlacesV.get(anySpot)); 
+      treatList.add(t);
     }
-    
-    
   }
 
-  treats = loadImage("bone.png");
-//  treats.resize(25, 25); 
+    e = new Enemy(220, 463, 2, 1); 
+    e1 = new Enemy(113, 335, 1, 5);
 
-  h = new House();
-  house = loadImage("dogHouse1.png");
- // house.resize(90, 90);
-  house1 = loadImage("dogHouseDone.png"); 
- // house1.resize(90,90); 
+    for (int i = 0; i < oldmanList.length; i++)
+    {
+      if (i % 2 == 1) 
+      {
+        oldmanList[i] = loadImage("oldMan1.png");
+        //oldmanList[i].resize(60, 60);
+      } else 
+      {
+        oldmanList[i] = loadImage("oldMan1flip.png"); 
+        // oldmanList[i].resize(60, 60);
+      }
+    }
+  }
 
-  //smooth(); 
-  frameRate(120);
-}
 
 void draw()
 {
@@ -126,18 +124,23 @@ void draw()
   {
 
     background(screen1); 
-    text("Press 's' to start the game!", 350, 200);
+    text("Press 'S' to start the game!", 350, 200);
   }
   if (gameOver == true && startGuide == false) 
   {
     background(screen1); 
-    text("OOPS! YOU'VE DIED! Press 'R' to restart", 250, 350);
-    text("Your score: " + p.getScore(), 250, 400); 
+    text("OH NO! You were caught! Better luck next time...", 200, 250);
+    text("Press 'R' to restart.", 200, 300); 
+    text("Your score: " + p.getScore(), 250, 340);
   }
 
   if (gameOver == false && startGuide == false) 
   {
-    startGuide = false; 
+    if (round > 0) 
+    {
+      p = new Player();
+      round = 0; 
+    }
     background(bg); //background
     // image(bg, 500, 325);
 
@@ -150,7 +153,7 @@ void draw()
     e.move(); 
     e.confineToEdges(); 
 
- e1.display(); 
+    e1.display(); 
     e1.move(); 
     e1.confineToEdges(); 
 
@@ -176,10 +179,6 @@ void draw()
         treatList.remove(i);
       }
     }
-
-    
-      
-  
   }
 }
 
@@ -187,8 +186,9 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
 {
   if (key == 'r')
   {
-    gameOver = false;
+    gameOver = true;
     startGuide = true;
+    round++;
   }
   if (key == 's') 
   {
