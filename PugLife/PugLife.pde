@@ -4,9 +4,9 @@ import processing.sound.*;
 
 //****Game Setup****
 
-SoundFile file; 
+SoundFile file, enemyFx, crunchFx, doomFx; 
 String audioName = "Eyeliner.mp3"; 
-String path; 
+String path, path1, path2, path3; 
 
 static float x; 
 static float y; 
@@ -55,9 +55,16 @@ void setup()
     }
   }
   path = sketchPath(audioName); 
+  path1 = sketchPath("crunch.mp3"); 
+  path2 = sketchPath("grumpy.wav");
+  path3 = sketchPath("doom.flac");
   file = new SoundFile(this, path); 
   file.play(); 
   file.amp(0.2);
+  
+  enemyFx = new SoundFile(this, path2);
+  crunchFx = new SoundFile(this, path1); 
+  doomFx = new SoundFile(this, path3); 
 
   p = new Player(); //Player
   doggy = loadImage("pug.png"); //Player Image
@@ -164,6 +171,7 @@ void draw()
       {
         p.setScore(p.getScore() + 50); //Increase player score
         treatList.get(i).setEaten(true);
+        crunchFx.play(); 
         treatsEatenList.add(treatList.get(i)); 
         treatList.remove(i);
       }
