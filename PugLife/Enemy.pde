@@ -36,8 +36,10 @@ class Enemy
       && p.getXPos() <= x + 30 && p.getXPos() >= x - 30 )
       {
         gameOver = true;
+        file.stop();
         doomFx.play(); 
         enemyFx.play(); 
+        enemyFx.amp(.3);
       }
   }
 

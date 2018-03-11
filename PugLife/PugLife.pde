@@ -32,7 +32,7 @@ color tuft = color(63, 179, 21);
 float start_x; 
 float start_y; 
 color spot; 
-int treatNumber = 20;
+int treatNumber = 1;
 
 void setup()
 { 
@@ -189,6 +189,8 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
     gameOver = true;
     startGuide = true;
     round++;
+    file.play(); 
+    enemyFx.stop(); 
   }
   if (key == 's') 
   {

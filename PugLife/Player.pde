@@ -70,6 +70,15 @@ class Player
     }
    } 
 
+   void moveCursor()
+   {
+        color leftColor = get((int(posX)-(doggy.width/2 + doggySpeed)), int(posY)); 
+    color rightColor = get((int(posX) + (doggy.width/2+1) + doggySpeed), int(posY)); 
+    color upColor = get(int(posX), (int(posY)-(doggy.width/2 + doggySpeed))); 
+    color downColor = get(int(posX), (int(posY) + (doggy.width/2+1) + doggySpeed)); 
+  
+   
+   }
   void moveLeft() {
    color leftColor = get((int(posX)-(doggy.width/2 + doggySpeed)), int(posY));  //<>//
     if (leftColor != wallColor) 
