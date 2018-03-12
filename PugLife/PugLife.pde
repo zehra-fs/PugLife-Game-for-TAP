@@ -124,12 +124,13 @@ void draw()
   {
 
     background(screen1); 
-    text("Press 'S' to start the game!", 350, 200);
+    textSize(32);
+    text("Press 'S' to start the game!", 290, 300);
   }
   if (gameOver == true && startGuide == false) 
   {
     background(screen1); 
-    text("OH NO! You were caught! Better luck next time...", 200, 250);
+    text("OH NO! You were caught! Better luck next time...", 130, 250);
     text("Press 'R' to restart.", 200, 300); 
     text("Your score: " + p.getScore(), 250, 340);
   }
