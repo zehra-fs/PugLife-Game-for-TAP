@@ -87,17 +87,7 @@ void reset()
   p = new Player(); //Player
   h = new House();
   // t = new Treat(); 
-  ArrayList usedSpots = new ArrayList(); 
-  for (int i = 0; i < treatNumber; i++)
-  { 
-    int anySpot = (int) random(0, possiblePlacesH.size()); 
-    if (!usedSpots.contains(anySpot)) {
-      usedSpots.add(anySpot); 
-
-      t = new Treat((int)possiblePlacesH.get(anySpot), (int) possiblePlacesV.get(anySpot)); 
-      treatList.add(t);
-    }
-  }
+  
 
     e = new Enemy(220, 463, 2, 1); 
     e1 = new Enemy(113, 335, 1, 5);
@@ -114,6 +104,18 @@ void reset()
         // oldmanList[i].resize(60, 60);
       }
     }
+    
+    ArrayList usedSpots = new ArrayList(); 
+  for (int i = 0; i < treatNumber; i++)
+  { 
+    int anySpot = (int) random(0, possiblePlacesH.size()); 
+    if (!usedSpots.contains(anySpot)) {
+      usedSpots.add(anySpot); 
+
+      t = new Treat((int)possiblePlacesH.get(anySpot), (int) possiblePlacesV.get(anySpot)); 
+      treatList.add(t);
+    }
+  }
   }
 
 
@@ -129,21 +131,21 @@ void draw()
   if (gameOver == true && startGuide == false) 
   {
     background(screen1); 
-    text("OH NO! You were caught! Better luck next time...", 200, 250);
+    text("You suck. Guess you really couldn't survive the Pug Life.", 200, 250);
     text("Press 'R' to restart.", 200, 300); 
-    text("Your score: " + p.getScore(), 250, 340);
+    text("Your score: " + p.getScore(), 200, 340);
   }
 
   if (gameOver == false && startGuide == false) 
   {
     if (round > 0) 
     {
-      p = new Player();
-      round = 0; 
+     reset();
+     round = 0;
     }
     background(bg); //background
     // image(bg, 500, 325);
-
+      
 
     p.display(); //player
     p.displayScore(); 
@@ -192,10 +194,12 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
     file.play(); 
     enemyFx.stop(); 
   }
+  
   if (key == 's') 
   {
     gameOver = false; 
     startGuide = false;
   }
+  
   p.on_keyPressed();
 }
