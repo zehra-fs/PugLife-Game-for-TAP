@@ -19,7 +19,7 @@ ArrayList possiblePlacesH = new ArrayList();
 ArrayList possiblePlacesV = new ArrayList(); 
 
 Player p; 
-Enemy e, e1, e2, e3;
+Enemy e, e1, e2, e3, e4;
 Treat t;
 House h;
 PFont healthTxt; 
@@ -89,9 +89,12 @@ void reset()
   // t = new Treat(); 
   
 
-    e = new Enemy(220, 463, 2, 1); 
-    e1 = new Enemy(113, 335, 1, 5);
-
+    e = new Enemy(132,345, 1, 1); 
+    e1 = new Enemy(674, 156, 1, 1); 
+    e2 = new Enemy(695, 399, 2, 2);
+    e3 = new Enemy(484,464, 1, 3);
+    e4 = new Enemy(568,280, 2, 5); 
+    
     for (int i = 0; i < oldmanList.length; i++)
     {
       if (i % 2 == 1) 
@@ -160,6 +163,15 @@ void draw()
     e1.move(); 
     e1.confineToEdges(); 
 
+    e2.display(); 
+    e2.move(); 
+    e2.confineToEdges(); 
+    e3.display(); 
+    e3.move(); 
+    e3.confineToEdges(); 
+    e4.display(); 
+    e4.move(); 
+    e4.confineToEdges(); 
     h.display();
     text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
 
