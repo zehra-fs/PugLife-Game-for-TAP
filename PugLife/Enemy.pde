@@ -7,7 +7,7 @@ class Enemy
         // Type 1: Side to Side 
         //Type 2: Up & Down 
   int manSpeed = 1;
-
+  int countH, countV;
 
   Enemy(int start_x, int start_y, int type1, int eNum)
   {

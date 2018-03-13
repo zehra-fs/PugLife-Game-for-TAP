@@ -24,7 +24,7 @@ Treat t;
 House h;
 PFont healthTxt; 
 color wallColor = color(183, 74, 11); 
-int countH, countV, score, round = 0; 
+int score, round = 0; 
 boolean isEaten = false, gameOver = true, startGuide = true; 
 color grass2 = color(114, 222, 60); 
 color grass1 = color(115, 222, 62);
@@ -78,7 +78,7 @@ void setup()
 
   //smooth(); 
   frameRate(120);
-  reset(); 
+  reset();
 }
 void reset()
 {
@@ -87,25 +87,25 @@ void reset()
   p = new Player(); //Player
   h = new House();
   // t = new Treat(); 
-  
 
-    e = new Enemy(220, 463, 2, 1); 
-    e1 = new Enemy(113, 335, 1, 5);
 
-    for (int i = 0; i < oldmanList.length; i++)
+  e = new Enemy(220, 463, 2, 1); 
+  e1 = new Enemy(113, 335, 1, 5);
+
+  for (int i = 0; i < oldmanList.length; i++)
+  {
+    if (i % 2 == 1) 
     {
-      if (i % 2 == 1) 
-      {
-        oldmanList[i] = loadImage("oldMan1.png");
-        //oldmanList[i].resize(60, 60);
-      } else 
-      {
-        oldmanList[i] = loadImage("oldMan1flip.png"); 
-        // oldmanList[i].resize(60, 60);
-      }
+      oldmanList[i] = loadImage("oldMan1.png");
+      //oldmanList[i].resize(60, 60);
+    } else 
+    {
+      oldmanList[i] = loadImage("oldMan1flip.png"); 
+      // oldmanList[i].resize(60, 60);
     }
-    
-    ArrayList usedSpots = new ArrayList(); 
+  }
+
+  ArrayList usedSpots = new ArrayList(); 
   for (int i = 0; i < treatNumber; i++)
   { 
     int anySpot = (int) random(0, possiblePlacesH.size()); 
@@ -116,7 +116,7 @@ void reset()
       treatList.add(t);
     }
   }
-  }
+}
 
 
 void draw()
@@ -126,8 +126,7 @@ void draw()
   {
 
     background(screen1); 
-    textSize(32);
-    text("Press 'S' to start the game!", 290, 300);
+    text("Press 'S' to start the game!", 350, 200);
   }
   if (gameOver == true && startGuide == false) 
   {
@@ -141,12 +140,12 @@ void draw()
   {
     if (round > 0) 
     {
-     reset();
-     round = 0;
+      reset();
+      round = 0;
     }
     background(bg); //background
     // image(bg, 500, 325);
-      
+
 
     p.display(); //player
     p.displayScore(); 
@@ -193,14 +192,14 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
     startGuide = true;
     round++;
     file.play(); 
-    enemyFx.stop(); 
+    enemyFx.stop();
   }
-  
+
   if (key == 's') 
   {
     gameOver = false; 
     startGuide = false;
   }
-  
+
   p.on_keyPressed();
 }
