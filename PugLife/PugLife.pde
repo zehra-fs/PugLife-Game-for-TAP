@@ -63,14 +63,16 @@ void setup()
 
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
 
+
  //Loading Images used for Player, Treats, and House
   doggy = loadImage("pug.png"); //Player Image
   //doggy.resize(35, 40);
   treats = loadImage("bone.png");
+
   //  treats.resize(25, 25); 
-  house = loadImage("dogHouse1.png");
+  house = loadImage("barn.png");
   // house.resize(90, 90);
-  house1 = loadImage("dogHouseDone.png"); 
+  house1 = loadImage("barnDone.png"); 
   // house1.resize(90,90); 
 
   smooth(); 
