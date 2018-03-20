@@ -65,15 +65,15 @@ void setup()
   crunchFx = new SoundFile(this, path1); 
   doomFx = new SoundFile(this, path3); 
 
-  doggy = loadImage("pug.png"); //Player Image
+  doggy = loadImage("horse.png"); //Player Image
   //doggy.resize(35, 40);
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
 
-  treats = loadImage("bone.png");
+  treats = loadImage("hay.png");
   //  treats.resize(25, 25); 
-  house = loadImage("dogHouse1.png");
+  house = loadImage("barn.png");
   // house.resize(90, 90);
-  house1 = loadImage("dogHouseDone.png"); 
+  house1 = loadImage("barnDone.png"); 
   // house1.resize(90,90); 
 
   //smooth(); 
