@@ -146,7 +146,9 @@ void draw()
     {
     text("You suck. Guess you really couldn't survive the Pug Life.", 200, 250);
     text("Press 'R' to restart.", 200, 300); 
-    text("Your score: " + p.getScore() / p.getTime() , 200, 340);
+    text("Bones collected: " + p.getScore(), 200, 340);
+    text("Time taken: " + p.getTime(), 200, 440); 
+    
     }
   }
 

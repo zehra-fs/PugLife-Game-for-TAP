@@ -29,6 +29,7 @@ class Player
   {
     return score;
   }
+  
  void setScore(int newScore)
  {
    score = newScore; 
