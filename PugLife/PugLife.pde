@@ -2,41 +2,40 @@ import processing.sound.*;
 
 
 
-//****Game Setup****
+//**************Declaring Variables*************************
 
 SoundFile file, enemyFx, crunchFx, doomFx; 
-String audioName = "Eyeliner.mp3"; 
-String path, path1, path2, path3; 
-
-static float x; 
-static float y; 
+float start_x, start_y; 
+int seconds, score, round = 0; 
 PImage doggy, bg, mazeImg, house, house1, treats, screen1;
 PImage[] oldmanList = new PImage[10]; 
+PFont healthTxt; 
 
 ArrayList<Treat> treatList = new ArrayList<Treat>();
 ArrayList<Treat> treatsEatenList = new ArrayList<Treat>();
 ArrayList possiblePlacesH = new ArrayList(); 
 ArrayList possiblePlacesV = new ArrayList(); 
+boolean isEaten = false, gameOver = true, startGuide = true, gameWon = false; 
+
 
 Player p; 
 Enemy e, e1, e2, e3, e4;
 Treat t;
 House h;
-PFont healthTxt; 
+
+//Color of the walls (collision) and grass colors
 color wallColor = color(183, 74, 11); 
-int countH, countV, score, round = 0; 
-boolean isEaten = false, gameOver = true, startGuide = true; 
-color grass2 = color(114, 222, 60); 
+color grass2 = color(114, 222, 60);  
 color grass1 = color(115, 222, 62);
 color tuft = color(63, 179, 21);
-float start_x; 
-float start_y; 
 color spot; 
-int treatNumber = 1;
 
+int treatNumber = 15; //Number of Treats displayed 
+
+//************Game Setup**********************
 void setup()
 { 
-  size(1000, 650); //Canvas setup
+  size(1000, 650); //Canvas size
   bg = loadImage("treatsTest_1.png"); //load background image
   bg.resize(1000, 650);
   bg.loadPixels(); 
@@ -54,21 +53,19 @@ void setup()
       }
     }
   }
-  path = sketchPath(audioName); 
-  path1 = sketchPath("crunch.mp3"); 
-  path2 = sketchPath("grumpy.wav");
-  path3 = sketchPath("doom.flac");
-  file = new SoundFile(this, path); 
+  
+  //Loading all sound files needed for the game
+  file = new SoundFile(this, "Eyeliner.mp3"); 
   file.amp(0.2);
+  enemyFx = new SoundFile(this, "grumpy.wav");
+  crunchFx = new SoundFile(this, "crunch.mp3"); 
+  doomFx = new SoundFile(this, "doom.flac"); 
 
-  enemyFx = new SoundFile(this, path2);
-  crunchFx = new SoundFile(this, path1); 
-  doomFx = new SoundFile(this, path3); 
-
-  doggy = loadImage("pug.png"); //Player Image
-  //doggy.resize(35, 40);
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
 
+ //Loading Images used for Player, Treats, and House
+  doggy = loadImage("pug.png"); //Player Image
+  //doggy.resize(35, 40);
   treats = loadImage("bone.png");
   //  treats.resize(25, 25); 
   house = loadImage("dogHouse1.png");
@@ -76,17 +73,18 @@ void setup()
   house1 = loadImage("dogHouseDone.png"); 
   // house1.resize(90,90); 
 
-  //smooth(); 
-  frameRate(120);
+  smooth(); 
+  frameRate(60);
   reset(); 
 }
+
+//Allows game to be restarted
 void reset()
 {
-  file.play(); 
+  file.play(); //plays Game music
 
-  p = new Player(); //Player
+  p = new Player(); 
   h = new House();
-  // t = new Treat(); 
   
 
     e = new Enemy(132,345, 1, 1); 
@@ -94,7 +92,7 @@ void reset()
     e2 = new Enemy(695, 399, 2, 2);
     e3 = new Enemy(484,464, 1, 3);
     e4 = new Enemy(568,280, 2, 5); 
-    
+
     for (int i = 0; i < oldmanList.length; i++)
     {
       if (i % 2 == 1) 
@@ -109,6 +107,7 @@ void reset()
     }
     
     ArrayList usedSpots = new ArrayList(); 
+    treatList.clear();
   for (int i = 0; i < treatNumber; i++)
   { 
     int anySpot = (int) random(0, possiblePlacesH.size()); 
@@ -135,9 +134,18 @@ void draw()
   if (gameOver == true && startGuide == false) 
   {
     background(screen1); 
+    if (gameWon == true)
+    {
+      text("YOU WON!", 450,250);
+      text("Press 'R' to restart.", 200, 300); 
+
+    }
+    else 
+    {
     text("You suck. Guess you really couldn't survive the Pug Life.", 200, 250);
     text("Press 'R' to restart.", 200, 300); 
-    text("Your score: " + p.getScore(), 200, 340);
+    text("Your score: " + p.getScore() / p.getTime() , 200, 340);
+    }
   }
 
   if (gameOver == false && startGuide == false) 
@@ -173,6 +181,10 @@ void draw()
     e4.move(); 
     e4.confineToEdges(); 
     h.display();
+
+    seconds = millis()/1000;
+    text("Timer: " + seconds, 503,24); 
+    p.setTime(seconds);
     text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
 
     for (int i = 0; i < treatList.size(); i++)
@@ -187,14 +199,23 @@ void draw()
        */ (p.getYPos() <= treatList.get(i).getYPos() + 30 && p.getYPos() >= treatList.get(i).getYPos() - 30
         && p.getXPos() <= treatList.get(i).getXPos() + 30 && p.getXPos() >= treatList.get(i).getXPos() - 30 )
       {
-        p.setScore(p.getScore() + 50); //Increase player score
+        p.setScore(p.getScore() + 1); //Increase player score
         treatList.get(i).setEaten(true);
         crunchFx.play(); 
         treatsEatenList.add(treatList.get(i)); 
         treatList.remove(i);
       }
     }
+    
+     if((treatsEatenList.size() == treatNumber) && p.getYPos() <= house1.height + 30 && p.getYPos() >= house1.height - 30
+        && p.getXPos() <= house1.width + 30 && p.getXPos() >= house1.width - 30 )
+      {
+        gameWon = true; 
+       }
+    
+     
   }
+  
 }
 
 void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
@@ -208,7 +229,7 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
     enemyFx.stop(); 
   }
   
-  if (key == 's') 
+  if (key == 's' && gameOver == true) 
   {
     gameOver = false; 
     startGuide = false;

@@ -9,6 +9,16 @@ class House{
     x = start_x; 
     y = start_y;
   }
+  
+  float getY()
+  {
+    return y; 
+     }
+
+  float getX()
+  {
+    return x; 
+  }
   void display()
   {
 
@@ -19,5 +29,10 @@ class House{
    {  
      image(house1, x, y); 
    }
+    if((treatsEatenList.size() == treatNumber) && p.getYPos() <= y + 30 && p.getYPos() >= y - 30
+        && p.getXPos() <= x + 30 && p.getXPos() >= x - 30 )
+      {
+        gameWon = true; 
+       }
   }
 }

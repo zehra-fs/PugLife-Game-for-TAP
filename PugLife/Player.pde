@@ -9,7 +9,7 @@ class Player
   float start_y = 30; 
   int doggySpeed; 
   boolean isDead = false; 
-
+  int totalTime; 
   Player()
   {
     reset();
@@ -18,10 +18,11 @@ class Player
   void reset()
   {
     score = 0; 
-    posX = start_x; 
-    posY = start_y; 
+    posX = start_x; //903; 
+    posY = start_y; //560; 
     d = 0; 
-    doggySpeed = 4;
+    doggySpeed = 6;
+    totalTime = 0; 
   }
 
   int getScore()
@@ -32,6 +33,16 @@ class Player
  {
    score = newScore; 
  }
+ 
+ void setTime(int seconds)
+ {
+   totalTime = seconds; 
+ }
+ 
+ int getTime()
+{
+  return totalTime; 
+}
  
   float getXPos()
   {
@@ -121,7 +132,7 @@ class Player
     String score = str(p.getScore()); 
     textFont(healthTxt, 30); // STEP 3 Specify font + size 
     fill(255, 255, 255); // STEP 4 Specify font color 
-    text(score, 835, 25); // STEP 5 Display Text
+    text("Bones Collected: " + score, 721, 24); // STEP 5 Display Text
   } 
 
   //Keeps doggy from going off the screen
