@@ -18,8 +18,8 @@ class Player
   void reset()
   {
     score = 0; 
-    posX = start_x; //903; 
-    posY = start_y; //560; 
+    posX = start_x;  
+    posY = start_y; 
     d = 0; 
     doggySpeed = 6;
     totalTime = 0; 
@@ -82,15 +82,8 @@ class Player
     }
    } 
 
-   void moveCursor()
-   {
-        color leftColor = get((int(posX)-(doggy.width/2 + doggySpeed)), int(posY)); 
-    color rightColor = get((int(posX) + (doggy.width/2+1) + doggySpeed), int(posY)); 
-    color upColor = get(int(posX), (int(posY)-(doggy.width/2 + doggySpeed))); 
-    color downColor = get(int(posX), (int(posY) + (doggy.width/2+1) + doggySpeed)); 
-  
+ 
    
-   }
   void moveLeft() {
    color leftColor = get((int(posX)-(doggy.width/2 + doggySpeed)), int(posY));  //<>//
     if (leftColor != wallColor) 

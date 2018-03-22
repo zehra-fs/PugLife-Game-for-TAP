@@ -1,4 +1,3 @@
-//REMEMBER TO CREATE A GRID W/ Width of Maze Bars, to spread the treats across!!! 
 
 //=========Treat Class=======
 class Treat {

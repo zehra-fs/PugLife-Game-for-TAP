@@ -1,4 +1,5 @@
-class House{
+class House
+{
   
   float start_x = 950; 
   float start_y = 600; 
@@ -13,7 +14,7 @@ class House{
   float getY()
   {
     return y; 
-     }
+  }
 
   float getX()
   {
@@ -28,11 +29,15 @@ class House{
      if (treatsEatenList.size() == treatNumber)
    {  
      image(house1, x, y); 
+   
+   if ((treatsEatenList.size() == treatNumber) && p.getYPos() <= h.getY() + 10 && p.getYPos() >= h.getY() - 10
+      && p.getXPos() <= h.getX() + 100 && p.getXPos() >= h.getX() - 100 )
+    {
+      gameWon = true;
+      gameOver = true;
+    }
+     
    }
-    if((treatsEatenList.size() == treatNumber) && p.getYPos() <= y + 30 && p.getYPos() >= y - 30
-        && p.getXPos() <= x + 30 && p.getXPos() >= x - 30 )
-      {
-        gameWon = true; 
-       }
+   
   }
 }

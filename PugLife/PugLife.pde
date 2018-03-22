@@ -30,7 +30,7 @@ color grass1 = color(115, 222, 62);
 color tuft = color(63, 179, 21);
 color spot; 
 
-int treatNumber = 15; //Number of Treats displayed 
+int treatNumber = 20; //Number of Treats displayed 
 
 //************Game Setup**********************
 void setup()
@@ -53,7 +53,7 @@ void setup()
       }
     }
   }
-  
+
   //Loading all sound files needed for the game
   file = new SoundFile(this, "Eyeliner.mp3"); 
   file.amp(0.2);
@@ -64,20 +64,20 @@ void setup()
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
 
 
- //Loading Images used for Player, Treats, and House
+  //**************Loading Images used for Player, Treats, and House*********
   doggy = loadImage("pug.png"); //Player Image
   //doggy.resize(35, 40);
   treats = loadImage("bone.png");
 
   //  treats.resize(25, 25); 
-  house = loadImage("barn.png");
+  house = loadImage("dogHouse.png");
   // house.resize(90, 90);
-  house1 = loadImage("barnDone.png"); 
+  house1 = loadImage("dogHouseDone.png"); 
   // house1.resize(90,90); 
 
   smooth(); 
   frameRate(60);
-  reset(); 
+  reset();
 }
 
 //Allows game to be restarted
@@ -87,29 +87,29 @@ void reset()
 
   p = new Player(); 
   h = new House();
-  
 
-    e = new Enemy(132,345, 1, 1); 
-    e1 = new Enemy(674, 156, 1, 1); 
-    e2 = new Enemy(695, 399, 2, 2);
-    e3 = new Enemy(484,464, 1, 3);
-    e4 = new Enemy(568,280, 2, 5); 
 
-    for (int i = 0; i < oldmanList.length; i++)
+  e = new Enemy(132, 345, 1, 1); 
+  e1 = new Enemy(674, 156, 1, 1); 
+  e2 = new Enemy(695, 399, 2, 2);
+  e3 = new Enemy(484, 464, 1, 3);
+  e4 = new Enemy(568, 280, 2, 5); 
+
+  for (int i = 0; i < oldmanList.length; i++)
+  {
+    if (i % 2 == 1) 
     {
-      if (i % 2 == 1) 
-      {
-        oldmanList[i] = loadImage("oldMan1.png");
-        //oldmanList[i].resize(60, 60);
-      } else 
-      {
-        oldmanList[i] = loadImage("oldMan1flip.png"); 
-        // oldmanList[i].resize(60, 60);
-      }
+      oldmanList[i] = loadImage("oldMan1.png");
+      //oldmanList[i].resize(60, 60);
+    } else 
+    {
+      oldmanList[i] = loadImage("oldMan1flip.png"); 
+      // oldmanList[i].resize(60, 60);
     }
-    
-    ArrayList usedSpots = new ArrayList(); 
-    treatList.clear();
+  }
+
+  ArrayList usedSpots = new ArrayList(); 
+  treatList.clear();
   for (int i = 0; i < treatNumber; i++)
   { 
     int anySpot = (int) random(0, possiblePlacesH.size()); 
@@ -120,7 +120,7 @@ void reset()
       treatList.add(t);
     }
   }
-  }
+}
 
 
 void draw()
@@ -136,32 +136,32 @@ void draw()
   if (gameOver == true && startGuide == false) 
   {
     background(screen1); 
-    if (gameWon == true)
-    {
-      text("YOU WON!", 450,250);
-      text("Press 'R' to restart.", 200, 300); 
 
-    }
-    else 
-    {
-    text("You suck. Guess you really couldn't survive the Pug Life.", 200, 250);
-    text("Press 'R' to restart.", 200, 300); 
-    text("Bones collected: " + p.getScore(), 200, 340);
-    text("Time taken: " + p.getTime(), 200, 440); 
-    
-    }
+    text("You suck. Guess you really couldn't survive the Pug Life.", 132, 495);
+    text("Press 'R' to restart.", 200, 400); 
+    text("Bones collected: " + p.getScore(), 200, 300);
+    text("Time taken: " + p.getTime() + " seconds", 200, 350);
+  }
+
+  if (gameWon == true)
+  {
+    background(screen1);
+    text("YOU WON!", 450, 250);
+    text("Press 'R' to play again!", 311, 300);
+      text("Bones collected: " + p.getScore(), 311, 350);
+    text("Time taken: " + p.getTime() + " seconds", 311, 400);
   }
 
   if (gameOver == false && startGuide == false) 
   {
     if (round > 0) 
     {
-     reset();
-     round = 0;
+      reset();
+      round = 0;
     }
     background(bg); //background
     // image(bg, 500, 325);
-      
+
 
     p.display(); //player
     p.displayScore(); 
@@ -187,7 +187,7 @@ void draw()
     h.display();
 
     seconds = millis()/1000;
-    text("Timer: " + seconds, 503,24); 
+    text("Timer: " + seconds, 503, 24); 
     p.setTime(seconds);
     text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
 
@@ -197,6 +197,8 @@ void draw()
       treatList.get(i).display(); //doggy treat
     }
 
+    /****Checks if player is in the same spot as a treat.
+     it adds a point to the player's score****/
     for (int i = 0; i < treatList.size(); i++) 
     { 
       if /*(p.getYPos() == treatList[i].getYPos() && p.getXPos() == treatList[i].getXPos())
@@ -210,16 +212,9 @@ void draw()
         treatList.remove(i);
       }
     }
-    
-     if((treatsEatenList.size() == treatNumber) && p.getYPos() <= house1.height + 30 && p.getYPos() >= house1.height - 30
-        && p.getXPos() <= house1.width + 30 && p.getXPos() >= house1.width - 30 )
-      {
-        gameWon = true; 
-       }
-    
-     
-  }
+
   
+  }
 }
 
 void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
@@ -228,16 +223,18 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
   {
     gameOver = true;
     startGuide = true;
+    gameWon = false;
     round++;
     file.play(); 
-    enemyFx.stop(); 
+    enemyFx.stop();
   }
-  
+
   if (key == 's' && gameOver == true) 
   {
     gameOver = false; 
     startGuide = false;
+    gameWon = false;
   }
-  
+
   p.on_keyPressed();
 }

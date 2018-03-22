@@ -39,7 +39,7 @@ class Enemy
         file.stop();
         doomFx.play(); 
         enemyFx.play(); 
-        enemyFx.amp(.3);
+       // enemyFx.amp(.3);
       }
   }
 
