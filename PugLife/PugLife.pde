@@ -59,7 +59,7 @@ void setup()
   file.amp(0.2);
   enemyFx = new SoundFile(this, "grumpy.wav");
   crunchFx = new SoundFile(this, "crunch.mp3"); 
-  doomFx = new SoundFile(this, "doom.flac"); 
+  doomFx = new SoundFile(this, "doom.mp3"); 
 
   healthTxt = createFont("Arial", 16, true); //Arial, 30 point, anti-aliasing on
 
