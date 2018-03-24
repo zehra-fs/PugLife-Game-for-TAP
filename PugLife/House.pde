@@ -22,22 +22,12 @@ class House
   }
   void display()
   {
-
     imageMode(CENTER); 
     image(house, x, y);
     
      if (treatsEatenList.size() == treatNumber)
    {  
-     image(house1, x, y); 
-   
-   if ((treatsEatenList.size() == treatNumber) && p.getYPos() <= h.getY() + 10 && p.getYPos() >= h.getY() - 10
-      && p.getXPos() <= h.getX() + 100 && p.getXPos() >= h.getX() - 100 )
-    {
-      gameWon = true;
-      gameOver = true;
-    }
-     
+     image(house1, x, y);     
    }
-   
   }
 }

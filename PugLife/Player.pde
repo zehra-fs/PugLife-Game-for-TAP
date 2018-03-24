@@ -85,7 +85,7 @@ class Player
  
    
   void moveLeft() {
-   color leftColor = get((int(posX)-(doggy.width/2 + doggySpeed)), int(posY));  //<>//
+   color leftColor = get((int(posX)-(doggy.width/2)), int(posY));  //<>//
     if (leftColor != wallColor) 
    {
       posX = posX- doggySpeed; 
@@ -93,20 +93,20 @@ class Player
   }
 
   void moveRight() {
-    color rightColor = get((int(posX) + (doggy.width/2+1) + doggySpeed), int(posY)); 
+    color rightColor = get((int(posX) + (doggy.width/2+1)), int(posY)); 
     if (rightColor != wallColor) {
       posX= posX+ doggySpeed;
     }
    
   }
   void moveUp() {
-    color upColor = get(int(posX), (int(posY)-(doggy.width/2 + doggySpeed))); 
+    color upColor = get(int(posX), (int(posY)-(doggy.width/2))); 
     if (upColor != wallColor) {
       posY = posY - doggySpeed;
     }
   }
   void moveDown() {
-    color downColor = get(int(posX), (int(posY) + (doggy.width/2+1) + doggySpeed)); 
+    color downColor = get(int(posX), (int(posY) + (doggy.width/2+1))); 
     if (downColor != wallColor) { 
       posY = posY + doggySpeed;
     }

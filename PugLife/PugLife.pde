@@ -6,7 +6,7 @@ import processing.sound.*;
 
 SoundFile file, enemyFx, crunchFx, doomFx; 
 float start_x, start_y; 
-int seconds, score, round = 0; 
+int seconds, score, round = 0, startTime = -1; 
 PImage doggy, bg, mazeImg, house, house1, treats, screen1;
 PImage[] oldmanList = new PImage[10]; 
 PFont healthTxt; 
@@ -15,7 +15,7 @@ ArrayList<Treat> treatList = new ArrayList<Treat>();
 ArrayList<Treat> treatsEatenList = new ArrayList<Treat>();
 ArrayList possiblePlacesH = new ArrayList(); 
 ArrayList possiblePlacesV = new ArrayList(); 
-boolean isEaten = false, gameOver = true, startGuide = true, gameWon = false; 
+boolean isEaten = false, gameOver = true, startGuide = true, gameWon = false, timerStart = false; 
 
 
 Player p; 
@@ -30,7 +30,7 @@ color grass1 = color(115, 222, 62);
 color tuft = color(63, 179, 21);
 color spot; 
 
-int treatNumber = 20; //Number of Treats displayed 
+int treatNumber = 5; //Number of Treats displayed 
 
 //************Game Setup**********************
 void setup()
@@ -84,16 +84,16 @@ void setup()
 void reset()
 {
   file.play(); //plays Game music
-
+  startTime = millis();
   p = new Player(); 
   h = new House();
 
 
-  e = new Enemy(132, 345, 1, 1); 
+  e = new Enemy(180, 241, 1, 1); 
   e1 = new Enemy(674, 156, 1, 1); 
   e2 = new Enemy(695, 399, 2, 2);
   e3 = new Enemy(484, 464, 1, 3);
-  e4 = new Enemy(568, 280, 2, 5); 
+  e4 = new Enemy(934, 107, 2, 5); 
 
   for (int i = 0; i < oldmanList.length; i++)
   {
@@ -110,6 +110,7 @@ void reset()
 
   ArrayList usedSpots = new ArrayList(); 
   treatList.clear();
+  treatsEatenList.clear();
   for (int i = 0; i < treatNumber; i++)
   { 
     int anySpot = (int) random(0, possiblePlacesH.size()); 
@@ -130,15 +131,17 @@ void draw()
   {
 
     background(screen1); 
-    textSize(32);
-    text("Press 'S' to start the game!", 290, 300);
+    textSize(25);
+    text("Oh no! All your doggy treats have spilled across\n the old man's lawn!", 50,250); 
+    text("Collect all your treats as quickly as you can while \n avoiding the mean old men. If they find you, \n they'll kick you off the lawn!", 50, 350);   
+    text("Press 'TAB' to start the game!", 215, 500);
   }
   if (gameOver == true && startGuide == false) 
   {
     background(screen1); 
 
-    text("You suck. Guess you really couldn't survive the Pug Life.", 132, 495);
-    text("Press 'R' to restart.", 200, 400); 
+    text("You lost. Guess you really couldn't survive the Pug Life.", 132, 495);
+    text("Press 'TAB' to restart.", 200, 400); 
     text("Bones collected: " + p.getScore(), 200, 300);
     text("Time taken: " + p.getTime() + " seconds", 200, 350);
   }
@@ -147,7 +150,7 @@ void draw()
   {
     background(screen1);
     text("YOU WON!", 450, 250);
-    text("Press 'R' to play again!", 311, 300);
+    text("Press 'TAB' to play again!", 311, 300);
       text("Bones collected: " + p.getScore(), 311, 350);
     text("Time taken: " + p.getTime() + " seconds", 311, 400);
   }
@@ -158,6 +161,7 @@ void draw()
     {
       reset();
       round = 0;
+      timerStart = true; 
     }
     background(bg); //background
     // image(bg, 500, 325);
@@ -186,10 +190,14 @@ void draw()
     e4.confineToEdges(); 
     h.display();
 
-    seconds = millis()/1000;
+    if (startTime != -1)
+    {
+    seconds = (millis() - startTime)/1000;
     text("Timer: " + seconds, 503, 24); 
     p.setTime(seconds);
-    text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
+    }
+ 
+    //text( "x: " + mouseX + " y: " + mouseY, mouseX, mouseY );
 
     for (int i = 0; i < treatList.size(); i++)
     { 
@@ -201,8 +209,7 @@ void draw()
      it adds a point to the player's score****/
     for (int i = 0; i < treatList.size(); i++) 
     { 
-      if /*(p.getYPos() == treatList[i].getYPos() && p.getXPos() == treatList[i].getXPos())
-       */ (p.getYPos() <= treatList.get(i).getYPos() + 30 && p.getYPos() >= treatList.get(i).getYPos() - 30
+      if (p.getYPos() <= treatList.get(i).getYPos() + 30 && p.getYPos() >= treatList.get(i).getYPos() - 30
         && p.getXPos() <= treatList.get(i).getXPos() + 30 && p.getXPos() >= treatList.get(i).getXPos() - 30 )
       {
         p.setScore(p.getScore() + 1); //Increase player score
@@ -212,6 +219,13 @@ void draw()
         treatList.remove(i);
       }
     }
+    
+      if ((treatsEatenList.size() == treatNumber) && p.getYPos() <= h.getY() + 10 && p.getYPos() >= h.getY() - 10
+      && p.getXPos() <= h.getX() + 100 && p.getXPos() >= h.getX() - 100 )
+    {
+      gameWon = true;
+      gameOver = true;
+    }
 
   
   }
@@ -219,8 +233,9 @@ void draw()
 
 void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
 {
-  if (key == 'r')
+  if (key == TAB)
   {
+    file.stop();
     gameOver = true;
     startGuide = true;
     gameWon = false;
@@ -229,7 +244,7 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
     enemyFx.stop();
   }
 
-  if (key == 's' && gameOver == true) 
+  if (key == TAB && gameOver == true) 
   {
     gameOver = false; 
     startGuide = false;
