@@ -40,6 +40,7 @@ void setup()
   bg.resize(1000, 650);
   bg.loadPixels(); 
 
+
   screen1 = loadImage("Screen.png"); 
 
   for (int i = 0; i < bg.width - 10; i++)
@@ -240,7 +241,7 @@ void keyPressed() //IF THERE"S TIME: add options for "Reset", "Exit", etc
     startGuide = true;
     gameWon = false;
     round++;
-    file.play(); 
+    //file.play(); 
     enemyFx.stop();
   }
 
