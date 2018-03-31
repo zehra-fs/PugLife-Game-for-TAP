@@ -1,6 +1,4 @@
-
-//==========PLAYER CLASS===========
-class Player 
+class Player  //<>//
 {
 
   int d; 
@@ -21,38 +19,38 @@ class Player
     posX = start_x;  
     posY = start_y; 
     d = 0; 
-    doggySpeed = 6;
-    totalTime = 0; 
+    doggySpeed = 6; //this is the speed of our doggy! 
+    totalTime = 0;
   }
 
   int getScore()
   {
     return score;
   }
-  
- void setScore(int newScore)
- {
-   score = newScore; 
- }
- 
- void setTime(int seconds)
- {
-   totalTime = seconds; 
- }
- 
- int getTime()
-{
-  return totalTime; 
-}
- 
+
+  void setScore(int newScore)
+  {
+    score = newScore;
+  }
+
+  void setTime(int seconds)
+  {
+    totalTime = seconds;
+  }
+
+  int getTime()
+  {
+    return totalTime;
+  }
+
   float getXPos()
   {
     return posX;
   }
-  
+
   float getYPos()
   { 
-    return posY; 
+    return posY;
   }
   void display()
   {
@@ -60,35 +58,23 @@ class Player
     image(doggy, posX, posY);
   }
 
- /*void on_keyPressed() 
+  void on_keyPressed() 
   {
     if ( key == CODED )
-    {
-      if ( keyCode == RIGHT ) x = x + doggySpeed;
-      if ( keyCode == DOWN ) y = y + doggySpeed;
-      if ( keyCode == LEFT )  x = x - doggySpeed;
-      if ( keyCode == UP )   y = y - doggySpeed;
-    }
-  }  
- */ 
-  void on_keyPressed() 
-   {
-      if ( key == CODED )
     {
       if ( keyCode == RIGHT ) moveRight();
       if ( keyCode == DOWN ) moveDown();
       if ( keyCode == LEFT )  moveLeft();
       if ( keyCode == UP )  moveUp();
     }
-   } 
+  } 
 
- 
-   
+
   void moveLeft() {
-   color leftColor = get((int(posX)-(doggy.width/2)), int(posY));  //<>//
+    color leftColor = get((int(posX)-(doggy.width/2)), int(posY)); 
     if (leftColor != wallColor) 
-   {
-      posX = posX- doggySpeed; 
+    {
+      posX = posX- doggySpeed;
     }
   }
 
@@ -97,7 +83,6 @@ class Player
     if (rightColor != wallColor) {
       posX= posX+ doggySpeed;
     }
-   
   }
   void moveUp() {
     color upColor = get(int(posX), (int(posY)-(doggy.width/2))); 
@@ -111,15 +96,7 @@ class Player
       posY = posY + doggySpeed;
     }
   } 
-  
- /* void checkCollision() {
-   color touchUp = path.get(posX, posY); 
-   color touchRight = path.get(posX + playerW, posY); 
-   color touchDown = path.get(posX + playerW, posY + playerH); 
-   color touchLeft = path.get(posX, posY + playerH); 
-  }
-  */ 
-  
+
   void displayScore()
   {
     // EDIT: DISPLAYING HEALTH ON THE SCREEN 
@@ -135,27 +112,4 @@ class Player
     posX = constrain(posX, 5, 990);
     posY = constrain(posY, 5, 640);
   }
-
-  //========================
-  /*void setup()
-   {
-   doggy = loadImage("pug.png"); 
-   doggy.resize(35, 40);
-   }
-   
-   void simulate()
-   { 
-   // float px=x, py=y;
-   if (0==d) x++;
-   if (1==d) y++;
-   if (2==d) x--;
-   if (3==d) y--;
-   }
-   
-   void draw()
-   {
-   //simulate(); 
-   //image(doggy, posX, posY);
-   }
-   */
 }
